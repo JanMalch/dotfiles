@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Let the script fail on error and on failing pipes
+set -eo pipefail
+
+# FIXME
+#location="$HOME"
+location="home"
+
+# Default to empty string if no arg is provided
+query="${1-}"
+# fzf -1 auto selects if there is only one result
+selected="$(ls "$location/cheats" | fzf -1 -q "$query")"
+
+glow "$location/cheats/$selected"

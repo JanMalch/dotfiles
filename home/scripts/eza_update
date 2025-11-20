@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Let the script fail on error and on failing pipes
+set -eo pipefail
+
+echo "Trying to update eza submodule in $XDG_CONFIG_HOME/eza"
+git -C "$XDG_CONFIG_HOME/eza" submodule update --remote --recursive
+echo "eza has been updated. Make sure you source ~/.zshrc"

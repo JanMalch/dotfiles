@@ -1,0 +1,3 @@
+[submodule "home/.config/eza"]
+	path = home/.config/eza
+	url = https://github.com/eza-community/eza
