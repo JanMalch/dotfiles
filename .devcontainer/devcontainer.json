@@ -1,0 +1,27 @@
+{
+    "image": "mcr.microsoft.com/devcontainers/base:alpine",
+    "postCreateCommand": "sudo apk add stow",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "timonwong.shellcheck",
+                "EditorConfig.EditorConfig",
+                "Catppuccin.catppuccin-vsc",
+                "Catppuccin.catppuccin-vsc-icons"
+            ],
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "zsh",
+                "terminal.integrated.profiles.linux": {
+                    "zsh": {
+                        "path": "/bin/zsh"
+                    }
+                },
+                "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono', monospace",
+                "terminal.integrated.fontSize": 13,
+                "terminal.integrated.lineHeight": 1.2,
+                "workbench.colorTheme": "Catppuccin Macchiato",
+                "catppuccin.italicKeywords": false
+            }
+        }
+    }
+}

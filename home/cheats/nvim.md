@@ -1,0 +1,21 @@
+# Neovim
+
+- `<leader>pv` for project view
+- [Telescope](https://github.com/nvim-telescope/telescope.nvim)
+    - `<leader>pf` to fuzzy-find project files
+    - `<C-p>` to fuzzy-find git files
+    - `<leader>ps` for project search with grep
+- [Harpoon](https://github.com/ThePrimeagen/harpoon2)
+    - `<leader>H` to open the list
+    - `<leader>h` to add the file to the list
+    - `<leader>1` to open the first, `<leader>2` the second, etc.
+    - `<leader><leader>1` to replace the first, `<leader><leader>2` the second, etc.
+- Copy
+    - `<leader>p` to keep clipboard when pasting
+    - `<leader>y` copy to system clipboard
+- Find & Replace
+    - `/find` to find and `n` for next
+    - `<leader>s` to start replacing the current word
+    - `%s/find/replace` to find and replace in the entire file with regex
+- `J` and `K` to move lines in visual mode
+- `:Mason` to list LSPs

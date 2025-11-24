@@ -1,0 +1,8 @@
+# https://github.com/charmbracelet/glow?tab=readme-ov-file#the-config-file
+
+# mouse wheel support (TUI-mode only)
+mouse: true
+# use pager to display markdown
+pager: true
+# show line numbers (TUI-mode only)
+showLineNumbers: true

@@ -1,0 +1,140 @@
+#!/usr/bin/env bash
+
+# Let the script fail on error and on failing pipes
+set -eo pipefail
+
+# Checks if the correct shell is being used
+check_shell() {
+    if [[ -z "$SHELL" ]]; then
+        echo -e "\e[1;31mWarning:\e[0m Unable to check if zsh is the default shell, because SHELL environment variable is not set."
+    elif [[ "$SHELL" == *zsh* ]]; then
+        echo -e "\e[0;32mSuccess:\e[0m Defaut shell is zsh"
+    else
+        echo -e "\e[1;31mWarning:\e[0m SHELL is not zsh. Please make sure you are using zsh.\e[0m"
+    fi
+}
+
+# Checks if the tool exists, prints its version and passed in installation link.
+check_tool() {
+    local cmd="$1"
+    local link="$2"
+    local padding=$(( 12 - ${#cmd} ))
+    if [ "$(command -v "$cmd")" ]; then
+      local output
+      output="$("$cmd" --version 2>/dev/null)" || output="<unknown version>"
+
+      local version
+      if [[ $cmd == "eza" ]]; then
+          version="$(printf '%s\n' "$output" | sed -n '2p')"
+      elif [[ $cmd == "go" ]]; then
+          version="$(go version)"
+      else
+          version="$(printf '%s\n' "$output" | sed -n '1p')"
+      fi
+
+      printf "%s " "$cmd"
+      printf '\e[0;30m·%.0s\e[0m' $(seq 1 $padding)
+      printf " \e[0;32m%s\e[0m\n" "$version"
+      printf "%-14s%s\n" "" "$(which "$cmd")"
+    else
+      printf "%s " "$cmd"
+      printf '\e[0;30m·%.0s\e[0m' $(seq 1 $padding)
+      printf " \e[1;31mmissing\e[0m\n"
+    fi
+    printf "%-14s\e[4;34m%s\e[0m\n" "" "$link"
+}
+
+# Includes the base.gitconfig in the global gitconfig
+include_base_gitconfig() {
+    if [[ -z "${XDG_CONFIG_HOME-}" ]]; then
+        echo -e "\e[1;31mWarning:\e[0m Using XDG_CONFIG_HOME environment variable in the global git config, but it's not defined."
+    fi
+    git config --global include.path "\$XDG_CONFIG_HOME/git/config"
+    echo -e "\e[1;32mSuccess:\e[0m The include.path of the global git config has successfully been overwritten."
+}
+
+# Downloads latest JetBrainsMono Nerd Font
+update_jetbrains_mono() {
+    local fontsdir
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # "~/Library/Fonts" for user-only
+        fontsdir="/Library/Fonts"
+    else
+        fontsdir="$HOME/.fonts"
+    fi
+
+    if [ ! -d "$fontsdir" ]; then
+        mkdir "$fontsdir"
+    fi
+    local url_cache="$fontsdir/.jetbrainsmono.nerdfont.txt"
+    local installed_zip_url
+    local latest_zip_url
+    installed_zip_url=$( [ -f "$url_cache" ] && cat "$url_cache" || echo "" )
+    latest_zip_url="$(curl -s "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" \
+        | jq -r '.assets[] | select(.name == "JetBrainsMono.zip") | .browser_download_url')"
+
+    if [[ "$installed_zip_url" == "$latest_zip_url" ]]; then
+        echo -e "\e[1;32mSuccess:\e[0m Latest JetBrains Mono Nerd Font already stored in $fontsdir/JetBrainsMono"
+    else
+        echo -e "Updating JetBrainsMono Nerd Font (\e[4;34m$latest_zip_url\e[0m) ..."
+        curl -sS -L -o "$fontsdir/JetBrainsMono.zip" "$latest_zip_url"
+        
+        if [ -d "$fontsdir/JetBrainsMono" ]; then
+            rm -r "$fontsdir/JetBrainsMono"
+        fi
+        unzip -q "$fontsdir/JetBrainsMono.zip" -d "$fontsdir/JetBrainsMono"
+        rm "$fontsdir/JetBrainsMono.zip"
+        echo "$latest_zip_url" > "$url_cache"
+        echo -e "\e[1;32mSuccess:\e[0m JetBrainsMono Nerd Font is stored in $fontsdir/JetBrainsMono"
+    
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            echo -e "\e[1;32mSuccess:\e[0m JetBrainsMono Nerd Font is available for system-wide use"
+        elif [ "$(command -v fc-cache)" ]; then 
+            fc-cache -vf > /dev/null
+        else
+            echo -e "\e[1;31mWarning:\e[0m Cannot auto-install the font on this platform"
+        fi
+    fi
+}
+
+echo "  ___      _               ___          _           "
+echo " / __| ___| |_ _  _ _ __  |   \\ ___  __| |_ ___ _ _ "
+echo " \\__ \\/ -_)  _| || | '_ \\ | |) / _ \\/ _|  _/ _ \\ '_|"
+echo " |___/\\___|\\__|\\_,_| .__/ |___/\\___/\\__|\\__\\___/_|  "
+echo "                   |_|                               "
+echo
+check_shell
+include_base_gitconfig
+update_jetbrains_mono
+if [ "$(command -v bat)" ]; then
+    echo -e "\e[0;30mWaiting:\e[0m Building bat cache ..."
+    bat cache --build > /dev/null
+    echo -e "\e[1;32mSuccess:\e[0m bat cache has been updated"
+fi
+
+echo
+check_tool "alacritty" "https://alacritty.org"
+check_tool "argus" "https://github.com/JanMalch/argus#readme"
+check_tool "atuin" "https://atuin.sh"
+check_tool "bat" "https://github.com/sharkdp/bat#readme"
+check_tool "carapace" "https://carapace.sh"
+check_tool "code" "https://code.visualstudio.com"
+check_tool "eza" "https://eza.rocks"
+check_tool "fd" "https://github.com/sharkdp/fd#readme"
+check_tool "fzf" "https://junegunn.github.io/fzf/installation/"
+check_tool "git" "https://git-scm.com/install/"
+check_tool "glow" "https://github.com/charmbracelet/glow#readme"
+check_tool "go" "https://go.dev"
+check_tool "jq" "https://jqlang.org"
+check_tool "nvim" "https://neovim.io"
+check_tool "pastel" "https://github.com/sharkdp/pastel#readme"
+check_tool "podman" "https://podman.io"
+check_tool "rg" "https://github.com/BurntSushi/ripgrep#readme"
+check_tool "roar" "https://github.com/JanMalch/roar#readme"
+check_tool "starship" "https://starship.rs/installing/"
+check_tool "tmux" "https://github.com/tmux/tmux/wiki"
+if [[ "$OSTYPE" != "darwin"* ]]; then
+    # MacOS (Darwin) brings pbcopy / pbpaste
+    check_tool "xclip" "https://stackoverflow.com/a/5130969"
+fi
+check_tool "zoxide" "https://github.com/ajeetdsouza/zoxide#readme"
