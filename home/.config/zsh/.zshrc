@@ -102,6 +102,18 @@ cheat() {
     selected="$(ls "$location" | fzf -1 --preview "bat --style=grid,numbers --color=always $location/{-1} | tail -n +2 | head -n -1" -q "$query")"
     bat --paging=always "$location/$selected"
 }
+# ripgrep cheat(sheets)
+cheater() {
+    local location="$HOME/cheats"
+    local query="${1-}"
+    if [[ -z "$query" ]]; then
+       echo "cheater must be called with exactly one argument"
+       return 1
+    fi
+    local selected
+    selected="$(rg -s -l -e "$query" "$location" | fzf -1 --preview "bat --style=grid,numbers --color=always {-1} | tail -n +2 | head -n -1")"
+    bat --paging=always "$selected"
+}
 
 # Starship always at the end
 # https://starship.rs/guide/#step-2-set-up-your-shell-to-use-starship
