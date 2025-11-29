@@ -1,4 +1,5 @@
 {
+    "name": "Bare Development Container",
     "image": "mcr.microsoft.com/devcontainers/base:alpine",
     "postCreateCommand": "sudo apk add stow",
     "customizations": {
