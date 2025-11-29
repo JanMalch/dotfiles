@@ -49,15 +49,21 @@
 *.eps      binary
 
 # Scripts
-*.bash     text eol=lf
-*.fish     text eol=lf
-*.ksh      text eol=lf
-*.sh       text eol=lf
-*.zsh      text eol=lf
+*.bash       text eol=lf
+*.fish       text eol=lf
+*.ksh        text eol=lf
+*.sh         text eol=lf
+*.zsh        text eol=lf
+*.zshrc      text eol=lf
+*.zshenv     text eol=lf
+setup_doctor text eol=lf
 # These are explicitly windows files and should use crlf
-*.bat      text eol=crlf
-*.cmd      text eol=crlf
-*.ps1      text eol=crlf
+*.bat        text eol=crlf
+*.cmd        text eol=crlf
+*.ps1        text eol=crlf
+
+# Lua
+*.lua      text
 
 # Serialisation
 *.json     text
@@ -65,6 +71,7 @@
 *.xml      text
 *.yaml     text
 *.yml      text
+*.conf     text eol=lf
 
 # Archives
 *.7z       binary
