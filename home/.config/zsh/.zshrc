@@ -62,6 +62,8 @@ alias ....="cd ../../.."
 help() {
     "$@" --help 2>&1 | bat --language=help --style="grid,numbers,snip"
 }
+# https://github.com/sharkdp/bat?tab=readme-ov-file#xclip
+alias cat="bat"
 
 # Colors
 # https://github.com/sharkdp/pastel#readme
