@@ -99,8 +99,8 @@ cheat() {
     local location="$HOME/cheats"
     local query="${1-}"
     local selected
-    selected="$(ls "$location" | fzf -1 -q "$query")"
-    bat "$location/$selected"
+    selected="$(ls "$location" | fzf -1 --preview "bat --style=grid,numbers --color=always $location/{-1} | tail -n +2 | head -n -1" -q "$query")"
+    bat --paging=always "$location/$selected"
 }
 
 # Starship always at the end
