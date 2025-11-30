@@ -14,7 +14,7 @@
     - `<leader>p` to keep clipboard when pasting
     - `<leader>y` copy to system clipboard
 - Find & Replace
-    - `/find` to find and `n` for next
+    - `/find` to find, `Enter` to confirm term, and then `n` for next
     - `<leader>s` to start replacing the current word
     - `%s/find/replace` to find and replace in the entire file with regex
 - `J` and `K` to move lines in visual mode
