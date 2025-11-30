@@ -100,7 +100,7 @@ cheat() {
     local query="${1-}"
     local selected
     selected="$(ls "$location" | fzf -1 --preview "bat --style=grid,numbers --color=always $location/{-1} | tail -n +2 | head -n -1" -q "$query")"
-    bat --paging=always "$location/$selected"
+    vim "$location/$selected"
 }
 # ripgrep cheat(sheets)
 cheater() {
@@ -112,7 +112,7 @@ cheater() {
     fi
     local selected
     selected="$(rg -s -l -e "$query" "$location" | fzf -1 --preview "bat --style=grid,numbers --color=always {-1} | tail -n +2 | head -n -1")"
-    bat --paging=always "$selected"
+    vim "$selected"
 }
 
 # Starship always at the end
