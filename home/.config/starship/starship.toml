@@ -13,6 +13,15 @@ palette = "catppuccin_macchiato"
 [git_branch]
 format =  '[$symbol$branch(:$remote_branch)]($style)'
 
+[java]
+disabled = true
+
+[kotlin]
+disabled = true
+
+[ruby]
+disabled = true
+
 [palettes.catppuccin_macchiato]
 rosewater = "#f4dbd6"
 flamingo = "#f0c6c6"
