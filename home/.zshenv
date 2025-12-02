@@ -5,7 +5,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export EDITOR="$(which nvim)"
+export EDITOR="nvim"
 export VISUAL="$EDITOR"
 
 alias vim="nvim"
