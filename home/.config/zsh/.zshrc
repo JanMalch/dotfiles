@@ -66,6 +66,7 @@ eval "$(atuin init zsh --disable-up-arrow)"
 # Not using -l because it makes it harder to use with fzf.
 # Just use "la" if you want something like "ls -la".
 # Also: using carapace for eza completions
+export EZA_CONFIG_DIR="$XDG_CONFIG_HOME/eza"
 alias ls="eza --icons=auto"
 alias la="eza -labh --no-user --icons=auto"
 alias tree="eza --tree --level=2 --icons=auto"
