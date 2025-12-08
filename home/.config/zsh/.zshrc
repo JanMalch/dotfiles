@@ -88,7 +88,7 @@ alias ....="cd ../../.."
 
 # bat
 help() {
-    "$@" --help 2>&1 | bat --language=help --style="grid,numbers,snip"
+    "$@" --help 2>&1 | vim
 }
 # https://github.com/sharkdp/bat?tab=readme-ov-file#xclip
 alias cat="bat"
