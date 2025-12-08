@@ -8,8 +8,6 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
 
-alias vim="nvim"
-
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
