@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+
+const now = Date.now();
+const arg = process.argv[2]
+  ? Number.parseInt(process.argv[2].replaceAll(".", "").replaceAll(",", ""))
+  : undefined;
+
+if (arg != null && Number.isNaN(arg)) {
+  console.error("Error:", process.argv[2], "cannot be parsed as a number.");
+  process.exit(1);
+}
+
+const numFmt = new Intl.NumberFormat();
+const dateFmt = new Intl.DateTimeFormat(undefined, {
+  dateStyle: "full",
+  timeStyle: "long",
+});
+
+if (arg != null) {
+  console.table({
+    now: {
+      millis: now,
+      "millis (formatted)": numFmt.format(now),
+      "date (ISO)": new Date(now),
+      "date (formatted)": dateFmt.format(new Date(now)),
+      when: "now",
+    },
+    "arg (ms)": {
+      millis: arg,
+      "millis (formatted)": numFmt.format(arg),
+      "date (ISO)": new Date(arg),
+      "date (formatted)": dateFmt.format(new Date(arg)),
+      when: arg === now ? "now" : arg < now ? "past" : "future",
+    },
+    "arg (s)": {
+      millis: arg * 1000,
+      "millis (formatted)": numFmt.format(arg * 1000),
+      "date (ISO)": new Date(arg * 1000),
+      "date (formatted)": dateFmt.format(new Date(arg * 1000)),
+      when: arg * 1000 === now ? "now" : arg * 1000 < now ? "past" : "future",
+    },
+  });
+} else {
+  console.table({
+    now: {
+      millis: now,
+      "millis (formatted)": numFmt.format(now),
+      "date (ISO)": new Date(now),
+      "date (formatted)": dateFmt.format(new Date(now)),
+    },
+  });
+}
