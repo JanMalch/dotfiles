@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+const args = process.argv.slice(2);
+
+/** Print the given `msg` to stderr in red font. */
+function err(msg) {
+    console.error('\x1b[31m%s\x1b[0m', msg)
+}
+
+/** Print the given `msg` to stdout in green font. */
+function ok(msg) {
+    console.log('\x1b[32m%s\x1b[0m', msg)
+}
+
+if (args.length === 0) {
+    err('received no argument')
+    process.exit(1)
+}
+
+if (args.length > 1) {
+    err('received more than one argument')
+    process.exit(1)
+}
+
+ok(encodeURIComponent(args[0]))
