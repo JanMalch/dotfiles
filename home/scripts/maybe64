@@ -1,0 +1,81 @@
+#!/usr/bin/env node
+
+const args = process.argv.slice(2);
+
+/** Print the given `msg` to stderr in red font. */
+function err(msg) {
+    console.error('\x1b[31m%s\x1b[0m', msg)
+}
+
+/** Print the given `msg` to stdout in green font. */
+function ok(msg) {
+    console.log('\x1b[32m%s\x1b[0m', msg)
+}
+
+if (args.length === 0) {
+    err('received no argument')
+    process.exit(1);
+}
+
+if (args.length > 1) {
+    err('received more than one argument')
+    process.exit(1);
+}
+
+/**
+ * Strips non printable characters and normalizes the given `text`.
+ * @param {string} text
+ * @returns {string}
+ * @author https://stackoverflow.com/a/71459309
+ */
+function stripNonPrintableAndNormalize(text) {
+    // strip control chars
+    text = text.replace(/\p{C}/gu, '');
+    // other common tasks are to normalize newlines and other whitespace
+    // normalize newline
+    text = text.replace(/\n\r/g, '\n');
+    text = text.replace(/\p{Zl}/gu, '\n');
+    text = text.replace(/\p{Zp}/gu, '\n');
+    // normalize space
+    text = text.replace(/\p{Zs}/gu, ' ');
+    return text;
+}
+
+/** 
+ * Tests if the given `text` is base64 and UTF-8 printable.
+ * Logs the result with {@link ok} or {@link err}.
+ * @param {string} text
+ * @returns {boolean} if the given text is printable base64 encoded text
+ */
+function testAndPrint(text) {
+    try {
+        const res = stripNonPrintableAndNormalize(atob(text));
+        if (!res) {
+            err(text)
+            return false
+        } else {
+            ok(res)
+            return true
+        }
+    } catch {
+        err(text)
+        return false
+    }
+}
+
+const arg = args[0];
+
+// Check for dots like JWT
+if (arg.includes('.')) {
+    arg.split('.').forEach((part, i, arr) => {
+        testAndPrint(part)
+        if (i < arr.length - 1) {
+            // Print dots in grey.
+            console.log('\x1b[90m%s\x1b[0m', '.')
+        }
+    });
+} else {
+    if (!testAndPrint(arg)) {
+        process.exit(1);
+    }
+}
