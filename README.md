@@ -1,6 +1,9 @@
 # Dotfiles
 
-_All the configurations for all my (dev) tooling._
+All the configurations for all my (dev) tooling.
+
+The [`setup_doctor`](./home/scripts/setup_doctor#L116) has a comprehensive list of tools to install.
+Note that my [`.zshrc`](./home/.config/zsh/.zshrc) and [`scripts` folder](./home/scripts/) also contains a number of utilities.
 
 ## Disclaimer
 
