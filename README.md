@@ -53,3 +53,4 @@ Clone the repository and checkout the [devcontainer](./.devcontainer/README.md).
 - [github.com/MariaSolOs/dotfiles](https://github.com/MariaSolOs/dotfiles)
 - [Omarchy Shell Tools](https://learn.omacom.io/2/the-omarchy-manual/57/shell-tools)
 - [Oh my tmux!](https://github.com/gpakosz/.tmux)
+- [github.com/ibraheemdev/modern-unix](https://github.com/ibraheemdev/modern-unix?tab=readme-ov-file)

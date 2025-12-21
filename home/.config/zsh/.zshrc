@@ -102,6 +102,15 @@ rgb2hex() {
     pastel color "$1" | pastel format hex
 }
 
+# utils
+jsondiff() {
+    local minus="$1"
+    shift
+    local plus="$1"
+    shift
+    delta <(jq --sort-keys . < $minus) <(jq --sort-keys . < $plus) --default-language="json" --file-style="omit" $@
+}
+
 # cheat(sheets)
 help() {
     "$@" --help 2>&1 | vim
