@@ -22,6 +22,7 @@ fi
 
 # Neovim
 alias vim="nvim"
+alias v="nvim"
 
 # fzf
 # https://github.com/catppuccin/fzf/blob/7c2e05606f2e75840b1ba367b1f997cd919809b3/themes/catppuccin-fzf-macchiato.sh
