@@ -136,8 +136,12 @@ cheat() {
     local location="$HOME/cheats"
     local query="${1-}"
     local selected
-    selected="$(ls "$location" | fzf -1 --preview "bat --style=grid,numbers --color=always $location/{-1} | tail -n +2 | head -n -1" -q "$query")"
-    vim "$location/$selected"
+    selected="$(ls "$location" | fzf -1 --preview "bat --plain --color=always $location/{-1}" -q "$query")"
+    if [[ -z "$selected" ]]; then
+        return 1
+    else
+        vim "$location/$selected"
+    fi   
 }
 # ripgrep cheat(sheets)
 cheater() {
@@ -148,8 +152,12 @@ cheater() {
        return 1
     fi
     local selected
-    selected="$(rg -s -l -e "$query" "$location" | fzf -1 --preview "bat --style=grid,numbers --color=always {-1} | tail -n +2 | head -n -1")"
-    vim "$selected"
+    selected="$(rg -s -l -e "$query" "$location" | fzf -1 --preview "bat --plain --color=always {-1}")"
+    if [[ -z "$selected" ]]; then
+        return 1
+    else
+        vim "$selected"
+    fi
 }
 
 # Starship always at the end
