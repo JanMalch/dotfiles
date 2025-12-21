@@ -4,7 +4,7 @@
 set -eo pipefail
 
 # Refer to e.g. https://pkgs.alpinelinux.org/package/v3.22/community/x86/carapace
-sudo apk add bat carapace eza fd fzf delta go git-lfs neovim nodejs ripgrep starship tmux xclip zoxide
+sudo apk add bat carapace eza fd fzf delta dust go git-lfs neovim nodejs ripgrep starship tmux xclip zoxide
 git lfs install
 bash <(curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh)
 

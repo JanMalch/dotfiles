@@ -1,0 +1,16 @@
+# Print tree with biggest at the bottom
+reverse = false
+
+# No colors will be printed
+no-colors=true
+
+# I rarely use `dust`, so I don't memorize all the options.
+# Instead I set some sensible defaults, to quickly narrow it down to some directory,
+# and then checking with `la`. Hence, the following options.
+
+# Only print directories
+only-dir=true
+
+# https://github.com/bootandy/dust/issues/536
+# Using `dus` from .zshrc as workaround
+collapse = ["node-modules", ".git", ".kotlin", ".gradle"]
