@@ -122,10 +122,16 @@ dus() {
     dust --collapse=node_modules --collapse=.git --collapse=.kotlin --collapse=.gradle $@
 }
 
-# cheat(sheets)
+# Most of the time I don't need to search in help texts ...
 help() {
+    "$@" --help 2>&1 | bat --plain --language=help
+}
+# ... but when I do, I would do so with Neovim
+helpv() {
     "$@" --help 2>&1 | vim
 }
+
+# cheat(sheets)
 cheat() {
     local location="$HOME/cheats"
     local query="${1-}"
