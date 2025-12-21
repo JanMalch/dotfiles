@@ -111,6 +111,12 @@ jsondiff() {
     delta <(jq --sort-keys . < $minus) <(jq --sort-keys . < $plus) --default-language="json" --file-style="omit" $@
 }
 
+jqv() { 
+    nvim +JqPlayground $1
+}
+# TODO: let's see which one I'll find more intuitive
+alias vjq="jqv"
+
 # cheat(sheets)
 help() {
     "$@" --help 2>&1 | vim

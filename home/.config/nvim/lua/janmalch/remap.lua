@@ -25,3 +25,8 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 -- replace current word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- https://github.com/yochem/jq-playground.nvim
+---- start the playground
+vim.keymap.set("n", "<leader>jq", vim.cmd.JqPlayground)
+---- when in the query window, run the jq query
+vim.keymap.set("n", "R", "<Plug>(JqPlaygroundRunQuery)")
