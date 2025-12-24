@@ -25,6 +25,11 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 -- replace current word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- pane navigation (e.g. for jq-playground)
+vim.keymap.set("n", "<C-h>", "<Cmd>wincmd h<CR>", { silent = true })
+vim.keymap.set("n", "<C-j>", "<Cmd>wincmd j<CR>", { silent = true })
+vim.keymap.set("n", "<C-k>", "<Cmd>wincmd k<CR>", { silent = true })
+vim.keymap.set("n", "<C-l>", "<Cmd>wincmd l<CR>", { silent = true })
 -- https://github.com/yochem/jq-playground.nvim
 ---- start the playground
 vim.keymap.set("n", "<leader>jq", vim.cmd.JqPlayground)
