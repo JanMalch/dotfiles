@@ -18,6 +18,9 @@ setopt hist_ignore_dups
 # Homebrew (only for MacOS)
 if [ -d "/opt/homebrew" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
+    # https://github.com/jeffreytse/zsh-vi-mode
+    # TODO: apply to other OS
+    source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 fi
 
 # Neovim
