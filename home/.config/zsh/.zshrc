@@ -23,6 +23,14 @@ if [ -d "/opt/homebrew" ]; then
     source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 fi
 
+# zsh-vi-mode
+ZVM_SYSTEM_CLIPBOARD_ENABLED=true
+# Workaround to make vi-mode work with atuin
+function zvm_after_init() {
+  zvm_bindkey viins '^R' atuin-search
+  zvm_bindkey vicmd '^R' atuin-search
+}
+
 # Neovim
 alias vim="nvim"
 alias v="nvim"
