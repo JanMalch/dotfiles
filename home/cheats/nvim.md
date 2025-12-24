@@ -17,5 +17,8 @@
     - `/find` to find, `Enter` to confirm term, and then `n` for next
     - `<leader>s` to start replacing the current word
     - `%s/find/replace` to find and replace in the entire file with regex
+- Casing
+    - `~` to switch case of a character
+    - `g~w` to switch casing of a word, `gUw` to uppercase it, `guw` for lowercase
 - `J` and `K` to move lines in visual mode
 - `:Mason` to list LSPs
