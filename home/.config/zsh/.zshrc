@@ -126,6 +126,12 @@ dus() {
     dust --collapse=node_modules --collapse=.git --collapse=.kotlin --collapse=.gradle $@
 }
 
+google() {
+    local IFS="%20"
+    local q="$(echo "$@")"
+    open "https://www.google.com/search?q=$q"
+}
+
 # Most of the time I don't need to search in help texts ...
 help() {
     "$@" --help 2>&1 | bat --plain --language=help
