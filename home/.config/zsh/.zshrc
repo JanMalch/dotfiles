@@ -18,12 +18,16 @@ setopt hist_ignore_dups
 # Homebrew (only for MacOS)
 if [ -d "/opt/homebrew" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
-    # https://github.com/jeffreytse/zsh-vi-mode
-    # TODO: apply to other OS
-    source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 fi
 
 # zsh-vi-mode
+# https://github.com/jeffreytse/zsh-vi-mode
+if [ -d "/opt/homebrew" ]; then
+    source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+elif [ -d "/usr/share/zsh/plugins/zsh-vi-mode" ]; then
+    # e.g. Arch Linux
+    source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+fi
 ZVM_SYSTEM_CLIPBOARD_ENABLED=true
 # Workaround to make vi-mode work with atuin
 function zvm_after_init() {

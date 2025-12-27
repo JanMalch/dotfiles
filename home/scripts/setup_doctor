@@ -10,7 +10,7 @@ check_shell() {
     elif [[ "$SHELL" == *zsh* ]]; then
         echo -e "\e[0;32mSuccess:\e[0m Defaut shell is zsh"
     else
-        echo -e "\e[1;31mWarning:\e[0m SHELL is not zsh. Please make sure you are using zsh.\e[0m"
+        echo -e "\e[1;31mWarning:\e[0m SHELL is not zsh. Please make sure you are using zsh."
     fi
 }
 
@@ -42,6 +42,22 @@ check_tool() {
       printf " \e[1;31mmissing\e[0m\n"
     fi
     printf "%-14s\e[4;34m%s\e[0m\n" "" "$link"
+}
+
+# Checking if https://github.com/jeffreytse/zsh-vi-mode is available
+check_zsh_vi_mode() {
+    if [ "$(command -v "brew")" ]; then
+        if [ -d "$(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode" ]; then
+            echo -e "\e[0;32mSuccess:\e[0m zsh-vi-mode installed via brew"
+        else
+            echo -e "\e[1;31mWarning:\e[0m zsh-vi-mode not installed via brew"
+        fi
+    elif [ -d "/usr/share/zsh/plugins/zsh-vi-mode" ]; then
+        # e.g. Arch Linux
+        echo -e "\e[0;32mSuccess:\e[0m zsh-vi-mode installed"
+    else
+        echo -e "\e[1;31mWarning:\e[0m zsh-vi-mode maybe not installed"
+    fi
 }
 
 # Includes the base.gitconfig in the global gitconfig
@@ -104,6 +120,7 @@ echo " |___/\\___|\\__|\\_,_| .__/ |___/\\___/\\__|\\__\\___/_|  "
 echo "                   |_|                               "
 echo
 check_shell
+check_zsh_vi_mode
 include_base_gitconfig
 update_jetbrains_mono
 if [ "$(command -v bat)" ]; then
