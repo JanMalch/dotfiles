@@ -42,13 +42,6 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --e
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 source <(fzf --zsh)
 
-# https://github.com/tobi/try
-if [ -f "$HOME/.local/try.rb" ]; then
-    eval "$(ruby "$HOME/.local/try.rb" init)"
-elif [ "$(command -v "try")" ]; then
-    eval "$(try init)"
-fi
-
 # https://carapace-sh.github.io/carapace-bin/setup.html
 export CARAPACE_BRIDGES='zsh'
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
@@ -85,6 +78,7 @@ dus() {
 
 eval "$(zoxide init zsh --cmd cd)"
 eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(ruby "$HOME/.localrb/try.rb" init)"
 
 # Starship always at the end
 # https://starship.rs/guide/#step-2-set-up-your-shell-to-use-starship
