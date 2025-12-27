@@ -4,9 +4,11 @@
 set -eo pipefail
 
 # Refer to e.g. https://pkgs.alpinelinux.org/package/v3.22/community/x86/carapace
-sudo apk add bat carapace eza fd fzf delta dust go git-lfs neovim nodejs ripgrep starship tmux xclip zoxide
+sudo apk add bat carapace eza fd fzf delta dust go git-lfs neovim nodejs ripgrep ruby starship tmux xclip zoxide
 git lfs install
 bash <(curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh)
+curl -sL https://raw.githubusercontent.com/tobi/try/refs/heads/main/try.rb > ~/.local/try.rb
+chmod +x ~/.local/try.rb
 
 echo
 sh "$HOME/scripts/setup_doctor"

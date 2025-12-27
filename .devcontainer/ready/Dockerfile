@@ -1,7 +1,9 @@
 FROM mcr.microsoft.com/devcontainers/base:alpine
 
-RUN sudo apk add atuin bat carapace eza fd fzf delta dust go git-lfs neovim nodejs ripgrep starship stow tmux xclip zoxide
+RUN sudo apk add atuin bat carapace eza fd fzf delta dust go git-lfs neovim nodejs ripgrep ruby starship stow tmux xclip zoxide
 RUN git lfs install
+RUN curl -sL https://raw.githubusercontent.com/tobi/try/refs/heads/main/try.rb > ~/.local/try.rb && chmod +x ~/.local/try.rb
+
 
 # Use setup_doctor for font downloading, etc.
 COPY ./home/scripts/setup_doctor /setup_doctor

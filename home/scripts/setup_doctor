@@ -153,6 +153,7 @@ check_tool "rg" "https://github.com/BurntSushi/ripgrep#readme"
 check_tool "roar" "https://github.com/JanMalch/roar#readme"
 check_tool "starship" "https://starship.rs/installing/"
 check_tool "tmux" "https://github.com/tmux/tmux/wiki"
+check_tool "try" "https://github.com/tobi/try#readme"
 if [[ "$OSTYPE" != "darwin"* ]]; then
     # MacOS (Darwin) brings pbcopy / pbpaste
     check_tool "xclip" "https://stackoverflow.com/a/5130969"
