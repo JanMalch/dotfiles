@@ -63,6 +63,16 @@ echo '{ "firstName": "Cameron", "lastName": "Nokes" }' | jq '[.firstName, .lastN
 # Cameron Nokes
 ```
 
+## Working with files
+
+`jq` can load queries from files with `-f`, and data file(s) as argument(s):
+
+```bash
+jq -f query.jq data.json
+jq -f query.jq data.json data2.json
+jq -f query.jq < data.json
+```
+
 ## Credit
 
 - https://cameronnokes.com/blog/jq-cheatsheet/
