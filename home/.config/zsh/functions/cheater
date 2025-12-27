@@ -1,0 +1,15 @@
+cheater() {
+    local location="$HOME/cheats"
+    local query="${1-}"
+    if [[ -z "$query" ]]; then
+       echo "cheater must be called with exactly one argument"
+       return 1
+    fi
+    local selected
+    selected="$(rg -s -l -e "$query" "$location" | fzf -1 --preview "bat --plain --color=always {-1}")"
+    if [[ -z "$selected" ]]; then
+        return 1
+    else
+        vim "$selected"
+    fi
+}

@@ -1,0 +1,7 @@
+jsondiff() {
+    local minus="$1"
+    shift
+    local plus="$1"
+    shift
+    delta <(jq --sort-keys . < $minus) <(jq --sort-keys . < $plus) --default-language="json" --file-style="omit" $@
+}

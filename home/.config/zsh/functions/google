@@ -1,0 +1,5 @@
+google() {
+    local IFS="%20"
+    local q="$(echo "$@")"
+    open "https://www.google.com/search?q=$q"
+}
