@@ -55,6 +55,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # https://junegunn.github.io/fzf/installation/#setting-up-shell-integration
 source <(fzf --zsh)
 
+# https://github.com/tobi/try
+eval "$(ruby "$HOME/.localrb/try.rb" init)"
+
 # ripgrep->fzf->vim [QUERY]
 # https://junegunn.github.io/fzf/tips/ripgrep-integration/#wrap-up
 rfv() (
