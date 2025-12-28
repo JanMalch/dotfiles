@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/devcontainers/base:alpine
 
-RUN sudo apk add atuin bat carapace eza fd fzf delta dust go git-lfs neovim nodejs ripgrep ruby starship stow tmux xclip zoxide
+RUN sudo apk add atuin bat carapace eza fd fzf delta dust go git-lfs lazygit neovim nodejs ripgrep ruby starship stow tmux xclip zoxide
 RUN git lfs install
 
 
