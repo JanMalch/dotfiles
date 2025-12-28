@@ -29,7 +29,7 @@ return {
 				{ section = "startup" },
 			},
 		},
-		-- explorer = { enabled = true },
+		explorer = { enabled = true },
 		indent = { enabled = true },
 		input = { enabled = true },
 		picker = { enabled = true },
@@ -39,5 +39,21 @@ return {
 		-- scroll = { enabled = true },
 		statuscolumn = { enabled = true },
 		words = { enabled = true },
+	},
+	keys = {
+		{
+			"<leader>e",
+			function()
+				Snacks.explorer()
+			end,
+			desc = "File Explorer",
+		},
+		{
+			"<leader>gg",
+			function()
+				Snacks.lazygit()
+			end,
+			desc = "Lazygit",
+		},
 	},
 }
