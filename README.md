@@ -43,6 +43,9 @@ The following tools are not used, but maybe I want to use them in the future:
 - [oh my zsh](https://ohmyz.sh/)
 - Neovim
   - [minharp.nvim](https://github.com/vieitesss/miniharp.nvim)
+- [tmux](https://github.com/tmux/tmux/wiki)
+  - I had it for a while, but [removed it](https://github.com/JanMalch/dotfiles/commit/1016ea9d68b7cb1fe6642a48ce66634813dc622d)
+  since [Ghostty](https://ghostty.org/) splits do the job for me for now
 
 ## Try it yourself
 
