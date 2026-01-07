@@ -11,12 +11,6 @@ update_bat_theme() {
     echo "bat theme updated"
 }
 
-# Update all the git submodules (tmux plugins)
-update_submodules() {
-    git submodule update --recursive --remote
-    echo "submodules have been updated"
-}
-
 # Update try (https://github.com/tobi/try)
 update_try() {
     curl -sL https://raw.githubusercontent.com/tobi/try/refs/heads/main/try.rb > home/.localrb/try.rb
@@ -27,7 +21,6 @@ update_try() {
 if [ -z "$(git status --porcelain)" ]; then 
     # Working directory clean
     update_bat_theme
-    update_submodules
     update_try
     git status
 else 

@@ -130,7 +130,6 @@ if [ "$(command -v bat)" ]; then
 fi
 
 echo
-check_tool "alacritty" "https://alacritty.org"
 check_tool "argus" "https://github.com/JanMalch/argus#readme"
 check_tool "atuin" "https://atuin.sh"
 check_tool "bat" "https://github.com/sharkdp/bat#readme"
