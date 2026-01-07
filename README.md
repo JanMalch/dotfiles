@@ -2,7 +2,7 @@
 
 All the configurations for all my (dev) tooling.
 
-The [`setup_doctor`](./home/scripts/setup_doctor#L116) has a comprehensive list of tools to install.
+The [`setup_doctor`](./home/scripts/setup_doctor#L133) has a comprehensive list of tools to install.
 Note that my [`.zshrc`](./home/.config/zsh/.zshrc) and [`scripts` folder](./home/scripts/) also contains a number of utilities.
 
 ## Disclaimer
@@ -19,8 +19,6 @@ If not, try running `git submodule update --init --recursive`.
 Afterwards, run the `setup.sh` script and follow the instructions.
 
 > The `updates.sh` is intended for updating contents in this git repository.
-
-See the [`setup_doctor`](./home/scripts/setup_doctor) to get an idea of which tools are being used.
 
 ## Theming
 
