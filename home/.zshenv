@@ -11,13 +11,10 @@ export VISUAL="$EDITOR"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
-# Put standalone binaries like roar and argus in $HOME/bin
+# Put standalone binaries like roar in $HOME/bin
 # Scripts from my git repository are in $HOME/scripts
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
-
-# https://github.com/JanMalch/argus
-export ARGUS_HOME="$HOME/argus"
 
 # https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/.ripgreprc"
