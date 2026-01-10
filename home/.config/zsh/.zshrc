@@ -136,11 +136,6 @@ jqv() {
 # TODO: let's see which one I'll find more intuitive
 alias vjq="jqv"
 
-dus() {
-    # obsolete with https://github.com/bootandy/dust/issues/536
-    dust --collapse=node_modules --collapse=.git --collapse=.kotlin --collapse=.gradle $@
-}
-
 google() {
     local IFS="%20"
     local q="$(echo "$@")"
