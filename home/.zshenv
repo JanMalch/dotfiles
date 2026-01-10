@@ -19,8 +19,10 @@ export PATH="$HOME/scripts:$PATH"
 # https://github.com/JanMalch/argus
 export ARGUS_HOME="$HOME/argus"
 
-# https://github.com/tobi/try
-export TRY_PATH="$HOME/tries"
-
 # https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/.ripgreprc"
+
+# Homebrew
+if [ -d "/opt/homebrew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
