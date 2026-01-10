@@ -51,9 +51,13 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
+alias mkcd="takedir" # see function below
+
 # ----------------------
 # Functions
 # ----------------------
+
+autoload -U zmv # built-in zsh mass file renaming
 
 # ripgrep->fzf->vim [QUERY]
 # https://junegunn.github.io/fzf/tips/ripgrep-integration/#wrap-up
@@ -85,6 +89,51 @@ jsondiff() {
     local minus="$1"; shift
     local plus="$1"; shift
     delta <(jq --sort-keys . < $minus) <(jq --sort-keys . < $plus) --default-language="json" --file-style="omit" $@
+}
+extract() {
+  case $1 in
+    *.tar.gz|*.tgz) tar -xzf "$1";;
+    *.tar.bz2|*.tbz2) tar -xjf "$1";;
+    *.zip) unzip "$1";;
+    *.rar) unrar x "$1";;
+    *) echo "Unknown archive format";;
+  esac
+}
+
+# ----------------------
+# Functions: take
+# ----------------------
+
+# https://batsov.com/articles/2022/09/16/oh-my-zsh-fun-with-take/
+
+take() {
+  if [[ $1 =~ ^(https?|ftp).*\.tar\.(gz|bz2|xz)$ ]]; then
+    takeurl "$1"
+  elif [[ $1 =~ ^([A-Za-z0-9]\+@|https?|git|ssh|ftps?|rsync).*\.git/?$ ]]; then
+    takegit "$1"
+  else
+    takedir "$@"
+  fi
+}
+
+takedir() {
+  mkdir -p $@ && cd ${@:$#}
+}
+
+takegit() {
+  git clone "$1"
+  cd "$(basename ${1%%.git})"
+}
+
+takeurl() {
+  local data thedir
+  data="$(mktemp)"
+  curl -L "$1" > "$data"
+  # TODO: use extract
+  tar xf "$data"
+  thedir="$(tar tf "$data" | head -n 1)"
+  rm "$data"
+  cd "$thedir"
 }
 
 # ----------------------
