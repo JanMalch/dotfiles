@@ -34,6 +34,7 @@ The following tools are not checked or setup, but are handy to have:
 The following tools are not used, but maybe I want to use them in the future:
 
 - [direnv](https://direnv.net/)
+- [zsh-defer](https://github.com/romkatv/zsh-defer)
 - [oh my zsh](https://ohmyz.sh/)
 - Neovim
   - [minharp.nvim](https://github.com/vieitesss/miniharp.nvim)
