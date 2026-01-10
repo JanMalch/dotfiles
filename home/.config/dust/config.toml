@@ -11,6 +11,4 @@ no-colors=true
 # Only print directories
 only-dir=true
 
-# https://github.com/bootandy/dust/issues/536
-# Using `dus` from .zshrc as workaround
 collapse = ["node-modules", ".git", ".kotlin", ".gradle"]
