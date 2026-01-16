@@ -19,6 +19,9 @@ export PATH="$HOME/scripts:$PATH"
 # https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/.ripgreprc"
 
+# https://docs.podman.io/en/latest/markdown/podman-compose.1.html
+export PODMAN_COMPOSE_PROVIDER="podman-compose"
+
 # Homebrew
 if [ -d "/opt/homebrew" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
