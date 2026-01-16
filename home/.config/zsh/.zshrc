@@ -46,6 +46,15 @@ alias ls="eza --icons=auto"
 alias la="eza -labh --no-user --icons=auto"
 alias tree="eza --tree --level=2 --icons=auto"
 
+# Copying
+if [ "$(command -v "xclip")" ]; then
+  alias copy="xclip"
+  alias paste="xclip -o"
+elif [ "$(command -v "pbcopy")" ]; then
+  alias copy="pbcopy"
+  alias paste="pbpaste"
+fi
+
 # Navigation
 alias ..="cd .."
 alias ...="cd ../.."
@@ -79,6 +88,7 @@ rfv() (
       --query "$*"
 )
 
+yl() { cat - | sed "${1}q;d" | copy; }
 hex2rgb() { pastel color "$1" | pastel format rgb; }
 rgb2hex() { pastel color "$1" | pastel format hex; }
 jqv() { nvim +JqPlayground $1; }
