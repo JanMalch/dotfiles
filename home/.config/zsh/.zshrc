@@ -17,7 +17,8 @@ export CARAPACE_BRIDGES='zsh'
 export EZA_CONFIG_DIR="$XDG_CONFIG_HOME/eza"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 
-export TRY_PATH="$HOME/tries" # https://github.com/tobi/try
+export TRY_PATH="$HOME/tries"     # https://github.com/tobi/try
+export CHEATS_PATH="$HOME/cheats" # see functions below
 
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -151,26 +152,35 @@ takeurl() {
 # ----------------------
 
 cheat() {
-    local location="$HOME/cheats"
     local query="${1-}"
     local selected
-    selected="$(ls "$location" | fzf -1 --preview "bat --plain --color=always $location/{-1}" -q "$query")"
+    selected="$(ls "$CHEATS_PATH" | fzf -1 --preview "bat --plain --color=always $CHEATS_PATH/{-1}" -q "$query")"
     if [[ -z "$selected" ]]; then
         return 1
     else
-        vim "$location/$selected"
+        bat --style="numbers,grid" "$CHEATS_PATH/$selected"
+    fi   
+}
+
+cheatv() {
+    local query="${1-}"
+    local selected
+    selected="$(ls "$CHEATS_PATH" | fzf -1 --preview "bat --plain --color=always $CHEATS_PATH/{-1}" -q "$query")"
+    if [[ -z "$selected" ]]; then
+        return 1
+    else
+        v "$CHEATS_PATH/$selected"
     fi   
 }
 
 cheater() {
-    local location="$HOME/cheats"
     local query="${1-}"
     if [[ -z "$query" ]]; then
        echo "cheater must be called with exactly one argument"
        return 1
     fi
     local selected
-    selected="$(rg -s -l -e "$query" "$location" | fzf -1 --preview "bat --plain --color=always {-1}")"
+    selected="$(rg -s -l -e "$query" "$CHEATS_PATH" | fzf -1 --preview "bat --plain --color=always {-1}")"
     if [[ -z "$selected" ]]; then
         return 1
     else
