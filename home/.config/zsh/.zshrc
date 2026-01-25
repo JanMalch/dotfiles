@@ -33,6 +33,8 @@ export FZF_DEFAULT_OPTS=" \
 # General Aliases
 # ----------------------
 
+alias cl='clear'
+
 alias vim="nvim"
 alias v="nvim"
 
