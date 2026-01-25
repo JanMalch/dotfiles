@@ -44,7 +44,7 @@ alias docker="podman" # https://podman.io/
 # Just use "la" if you want something like "ls -la".
 # Also: using carapace for eza completions
 alias ls="eza --icons=auto"
-alias la="eza -labh --no-user --icons=auto"
+alias la="eza -labh --no-user --icons=auto --git"
 alias tree="eza --tree --level=2 --icons=auto"
 
 # Copying
@@ -89,6 +89,8 @@ rfv() (
       --query "$*"
 )
 
+cx() { cd "$@" && ls -a; }
+fcd() { cd "$(find . -type d -not -path '*/.*' | fzf)" && ls -a; }
 yl() { cat - | sed "${1}q;d" | copy; }
 hex2rgb() { pastel color "$1" | pastel format rgb; }
 rgb2hex() { pastel color "$1" | pastel format hex; }
