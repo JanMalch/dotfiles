@@ -7,6 +7,7 @@ set -eo pipefail
 sudo apk add bat carapace eza fd fzf delta dust lazygit go git-lfs neovim nodejs ripgrep ruby starship tmux xclip zoxide
 git lfs install
 bash <(curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh)
+bash -c "$(curl -sLo- https://superfile.dev/install.sh)"
 
 echo
 sh "$HOME/scripts/setup_doctor"

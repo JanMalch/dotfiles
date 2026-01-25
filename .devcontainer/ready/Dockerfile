@@ -1,6 +1,7 @@
 FROM mcr.microsoft.com/devcontainers/base:alpine
 
 RUN sudo apk add atuin bat carapace eza fd fzf delta dust go git-lfs lazygit neovim nodejs ripgrep ruby starship stow tmux xclip zoxide
+RUN bash -c "$(curl -sLo- https://superfile.dev/install.sh)"
 RUN git lfs install
 
 
