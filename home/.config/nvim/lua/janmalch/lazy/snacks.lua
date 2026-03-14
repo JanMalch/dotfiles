@@ -29,7 +29,7 @@ return {
 				{ section = "startup" },
 			},
 		},
-		explorer = { enabled = true },
+		explorer = { enabled = false },
 		indent = { enabled = true },
 		input = { enabled = true },
 		picker = { enabled = true },
@@ -41,13 +41,6 @@ return {
 		words = { enabled = true },
 	},
 	keys = {
-		{
-			"<leader>e",
-			function()
-				Snacks.explorer()
-			end,
-			desc = "File Explorer",
-		},
 		{
 			"<leader>gg",
 			function()
