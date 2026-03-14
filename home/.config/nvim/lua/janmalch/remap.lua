@@ -35,3 +35,14 @@ vim.keymap.set("n", "<C-l>", "<Cmd>wincmd l<CR>", { silent = true })
 vim.keymap.set("n", "<leader>jq", vim.cmd.JqPlayground)
 ---- when in the query window, run the jq query
 vim.keymap.set("n", "R", "<Plug>(JqPlaygroundRunQuery)")
+-- buffers AKA tabs
+local opts = { noremap = true, silent = true }
+for i = 1, 9 do
+	vim.keymap.set("n", "<leader>" .. i, "<Cmd>BufferGoto " .. i .. "<CR>", opts)
+end
+vim.keymap.set("n", "<leader>0", "<Cmd>BufferLast<CR>", opts)
+vim.keymap.set("n", "<leader>,", "<Cmd>BufferPrevious<CR>", opts)
+vim.keymap.set("n", "<leader>.", "<Cmd>BufferNext<CR>", opts)
+vim.keymap.set("n", "<leader>bp", "<Cmd>BufferPin<CR>", opts)
+vim.keymap.set("n", "<leader>bc", "<Cmd>BufferClose<CR>", opts)
+vim.keymap.set("n", "<leader>bs", "<Cmd>BufferPick<CR>", opts)
