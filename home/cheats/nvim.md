@@ -21,4 +21,10 @@
     - `~` to switch case of a character
     - `g~w` to switch casing of a word, `gUw` to uppercase it, `guw` for lowercase
 - `J` and `K` to move lines in visual mode
+- [Explorer](https://github.com/folke/snacks.nvim/blob/main/docs/explorer.md)
+   - `<Tab>` to select files, navigate to target directory, `m` to move, `c` to copy
+   - `m` to rename single file, `c` to copy & rename single file
+   - `d` to delete current / selected files
+   - `a` to add a new file or directory
+   - `<leader>/` to grep in current directory
 - `:Mason` to list LSPs
