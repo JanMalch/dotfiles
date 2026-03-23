@@ -45,9 +45,9 @@ alias docker="podman" # https://podman.io/
 # Not using -l because it makes it harder to use with fzf.
 # Just use "la" if you want something like "ls -la".
 # Also: using carapace for eza completions
-alias ls="eza --icons=auto"
-alias la="eza -labh --no-user --icons=auto --git"
-alias tree="eza --tree --level=2 --icons=auto"
+alias ls="eza --group-directories-first --icons=auto"
+alias la="eza --group-directories-first -labh --no-user --icons=auto --git"
+alias tree="eza --group-directories-first --tree --level=2 --icons=auto"
 
 # Copying
 if [ "$(command -v "xclip")" ]; then
