@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+# curl + pretty printing with bat & jq. Also prints the method and URL.
+# Assumes URL is the last parameter.
+# I use it for scripts using curl, not when using curl directly in the terminal,
+# since there I can see the used URL and a "| bat" is good enough.
+
+# Let the script fail on error and on failing pipes
+set -eo pipefail
+
+args=("$@")
+method="GET"
+
+for i in "${!args[@]}"; do
+    if [ "${args[$i]}" = "-X" ]; then
+        method="${args[$((i+1))]}"
+    fi
+done
+
+printf "\e[1m%s\e[0m %s\n" "$method" "${@:$#}"
+result="$(curl "$@")"
+
+set +e
+is_json=$(jq -re '""' <<<"${result}" 2>&1)
+set -e
+
+if [ -z "${is_json}" ]; then
+    echo "$result" | jq . | bat -l json --style=numbers,grid
+else
+    echo "$result" | bat --style=numbers,grid
+fi
