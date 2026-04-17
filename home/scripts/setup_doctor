@@ -159,7 +159,6 @@ check_tool "roar" "https://github.com/JanMalch/roar#readme"
 check_tool "ruby" "https://www.ruby-lang.org"
 check_tool "starship" "https://starship.rs/installing/"
 check_tool "spf" "https://superfile.dev/"
-check_tool "tmux" "https://github.com/tmux/tmux/wiki"
 check_tool "try" "https://github.com/tobi/try#readme"
 if [[ "$OSTYPE" != "darwin"* ]]; then
     # MacOS (Darwin) brings pbcopy / pbpaste
