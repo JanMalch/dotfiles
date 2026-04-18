@@ -3,3 +3,4 @@ font-family = "JetBrainsMono Nerd Font Mono"
 font-thicken = true
 font-size = 13
 adjust-cell-width = -1
+window-save-state = always
