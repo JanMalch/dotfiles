@@ -4,7 +4,7 @@
 set -eo pipefail
 
 # Refer to e.g. https://pkgs.alpinelinux.org/package/v3.22/community/x86/carapace
-sudo apk add bat carapace eza fastfetch fd ffmpeg fzf delta dust lazygit go git-lfs imagemagick neovim nodejs npm ripgrep ruby starship xclip zoxide
+sudo apk add bat carapace eza fastfetch fd ffmpeg fzf delta dust lazygit go git-lfs imagemagick neovim nodejs npm ripgrep starship xclip zoxide
 git lfs install
 bash <(curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh)
 bash -c "$(curl -sLo- https://superfile.dev/install.sh)"

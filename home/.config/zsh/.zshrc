@@ -17,8 +17,9 @@ export CARAPACE_BRIDGES='zsh'
 export EZA_CONFIG_DIR="$XDG_CONFIG_HOME/eza"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 
-export TRY_PATH="$HOME/tries"     # https://github.com/tobi/try
-export CHEATS_PATH="$HOME/cheats" # see functions below
+# see functions below
+export TRY_PATH="$HOME/tries"
+export CHEATS_PATH="$HOME/cheats" 
 
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -113,6 +114,32 @@ extract() {
     *.rar) unrar x "$1";;
     *) echo "Unknown archive format";;
   esac
+}
+
+# fzf-based replacement for https://github.com/tobi/try
+# When fzf is closed with enter, it will create a directory with the name of the entered query.
+# When called without a query, it prepopulates it with the current date.
+# If you absolutely don't know what you are searching for, you can just call `try 2`,
+# which will show all tries, because every directory has a 2 in it, because of the year.
+# And if you don't use that date "convention", then you can remove the 2 with one stroke.
+try() {
+  local query
+  query="$1"
+  local opt
+  if [ -z "$query" ]; then
+    query=$(date +"%Y-%m-%d-")
+  else
+    opt="-1"
+  fi
+  local fzf_out
+  fzf_out=$(ls "$TRY_PATH" | fzf --print-query --style full --preview 'printf "%s/%s" "$TRY_PATH" {} | xargs eza --group-directories-first --tree --level=2 --icons=auto --color=always' $opt --query "$query")
+  local selected
+  selected=$(echo "$fzf_out" | tail -1)
+  if [ -z "$selected" ]; then
+    return 1
+  else
+    mkdir -p "$TRY_PATH/$selected" && cx "$TRY_PATH/$selected"
+  fi
 }
 
 # ----------------------
@@ -285,7 +312,6 @@ zvm_after_init() {
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)                # https://carapace-sh.github.io/carapace-bin/setup.html
 source <(fzf --zsh)                         # https://junegunn.github.io/fzf/installation/#setting-up-shell-integration
-eval "$(ruby "$HOME/.localrb/try.rb" init)" # https://github.com/tobi/try
 eval "$(zoxide init zsh --cmd cd)"          # https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation
 eval "$(atuin init zsh --disable-up-arrow)" # Bind ctrl-r but not up arrow, https://atuin.sh/ 
 eval "$(starship init zsh)"                 # https://starship.rs/guide/#step-2-set-up-your-shell-to-use-starship
