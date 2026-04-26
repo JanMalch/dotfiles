@@ -50,6 +50,11 @@ alias ls="eza --group-directories-first --icons=auto"
 alias la="eza --group-directories-first -labh --no-user --icons=auto --git"
 alias tree="eza --group-directories-first --tree --level=2 --icons=auto"
 
+# verbose & confirm overwrites
+alias mv="mv -iv"
+alias cp="cp -riv"
+alias mkdir="mkdir -vp"
+
 # Copying
 if [ "$(command -v "xclip")" ]; then
   alias copy="xclip"
