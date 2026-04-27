@@ -18,14 +18,51 @@ for i in "${!args[@]}"; do
 done
 
 printf "\e[1m%s\e[0m %s\n" "$method" "${@:$#}"
-result="$(curl "$@")"
+result="$(curl "$@")";
 
-set +e
-is_json=$(jq -re '""' <<<"${result}" 2>&1)
-set -e
+if [ "${result:0:5}" == "HTTP/" ]; then
+    # curl was likely invoked with -i, so try to detect the body
+    # and format it with jq, if it's json.
+    is_headers=true
+    # collect lines in arrays
+    header_lines=()
+    body_lines=()
+    while IFS= read -r line; do 
+        if [ -n "$(echo "$line" | sed -n '/^[[:space:]]*$/p')" ]; then 
+            is_headers=false
+        else
+            if $is_headers; then
+                header_lines+=("$line")
+            else    
+                body_lines+=("$line")
+            fi
+        fi
+    done <<< "$result"
 
-if [ -z "${is_json}" ]; then
-    echo "$result" | jq . | bat -l json --style=numbers,grid
+    header=$(printf "%s\n" "${header_lines[@]}")
+    body=$(printf "%s\n" "${body_lines[@]}")
+
+    set +e
+    is_json=$(jq -re '""' <<<"${body}" 2>&1)
+    set -e
+
+    formatted="${header}"
+    if [ -z "${is_json}" ]; then
+        formatted="${formatted}"$'\n'$'\n'"$(echo "$body" | jq .)"
+    else
+        formatted="${formatted}"$'\n'$'\n'"${body}"
+        echo "$result" | bat --style=numbers,grid
+    fi
+    echo "$formatted" | bat --style=numbers,grid
 else
-    echo "$result" | bat --style=numbers,grid
+    # Seems to be just the body ...
+    set +e
+    is_json=$(jq -re '""' <<<"${result}" 2>&1)
+    set -e
+
+    if [ -z "${is_json}" ]; then
+        echo "$result" | jq . | bat -l json --style=numbers,grid
+    else
+        echo "$result" | bat --style=numbers,grid
+    fi
 fi
