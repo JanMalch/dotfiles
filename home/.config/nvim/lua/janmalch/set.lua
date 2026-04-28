@@ -30,3 +30,6 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "120"
 vim.g.have_nerd_font = true
+
+-- Mostly for floating LSP windows
+vim.o.winborder = "rounded"
