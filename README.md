@@ -28,6 +28,7 @@ The following tools are not checked or setup, but are handy to have:
 - [Obsidian](https://obsidian.md/)
 - [LocalSend](https://localsend.org/)
 - [LibreOffice](https://www.libreoffice.org/)
+- [Link Hints](https://lydell.github.io/LinkHints/) for Firefox and Chrome
 
 ## Considerations
 
