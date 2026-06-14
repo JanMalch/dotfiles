@@ -6,7 +6,6 @@ set -eo pipefail
 # Refer to e.g. https://pkgs.alpinelinux.org/package/v3.22/community/x86/carapace
 sudo apk add bat carapace eza fastfetch fd ffmpeg fzf delta dust dysk lazygit go git-lfs imagemagick neovim nodejs npm ripgrep starship xclip zoxide
 git lfs install
-bash -c "$(curl -sLo- https://superfile.dev/install.sh)"
 
 echo
 sh "$HOME/scripts/setup_doctor"

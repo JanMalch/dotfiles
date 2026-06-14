@@ -159,7 +159,6 @@ check_tool "podman" "https://podman.io"
 check_tool "rg" "https://github.com/BurntSushi/ripgrep#readme"
 check_tool "roar" "https://github.com/JanMalch/roar#readme"
 check_tool "starship" "https://starship.rs/installing/"
-check_tool "spf" "https://superfile.dev/"
 if [[ "$OSTYPE" != "darwin"* ]]; then
     # MacOS (Darwin) brings pbcopy / pbpaste
     check_tool "xclip" "https://stackoverflow.com/a/5130969"
