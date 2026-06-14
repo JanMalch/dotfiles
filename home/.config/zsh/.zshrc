@@ -2,10 +2,16 @@ autoload -Uz compinit && compinit
 # https://stackoverflow.com/questions/13762280/zsh-compinit-insecure-directories
 # compaudit | xargs chmod g-w
 
-setopt prompt_subst           # Reevaluate the prompt string each time it's displaying a prompt
+HISTFILE=~/.config/zsh/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt append_history         # Save history between sessions
 setopt hist_ignore_space      # Don't add commands with leading space to history
 setopt hist_expire_dups_first # Delete duplicates first when HISTFILE size exceeds HISTSIZE.
 setopt hist_ignore_dups       # Ignore duplicated commands history list.
+setopt hist_reduce_blanks     # Remove extra blanks from each command line being added to history
+setopt prompt_subst           # Reevaluate the prompt string each time it's displaying a prompt
 
 # ----------------------
 # Environment Variables
@@ -23,6 +29,7 @@ export CHEATS_PATH="$HOME/cheats"
 
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# see "Copying" below for CTRL-R
 export FZF_DEFAULT_OPTS=" \
   --color=bg+:#363A4F,bg:#24273A,spinner:#F4DBD6,hl:#ED8796 \
   --color=fg:#CAD3F5,header:#ED8796,info:#C6A0F6,pointer:#F4DBD6 \
@@ -59,9 +66,18 @@ alias mkdir="mkdir -vp"
 if [ "$(command -v "xclip")" ]; then
   alias copy="xclip"
   alias paste="xclip -o"
+  export FZF_CTRL_R_OPTS="
+    --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip)+abort'
+    --color header:italic
+    --header 'Press CTRL-Y to copy command into clipboard'"
+
 elif [ "$(command -v "pbcopy")" ]; then
   alias copy="pbcopy"
   alias paste="pbpaste"
+  export FZF_CTRL_R_OPTS="
+    --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+    --color header:italic
+    --header 'Press CTRL-Y to copy command into clipboard'"
 fi
 
 # Navigation
@@ -309,14 +325,8 @@ elif [ -d "/usr/share/zsh/plugins/zsh-vi-mode" ]; then
     source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 fi
 
-zvm_after_init() {
-  zvm_bindkey viins '^R' atuin-search
-  zvm_bindkey vicmd '^R' atuin-search
-}
-
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)                # https://carapace-sh.github.io/carapace-bin/setup.html
 source <(fzf --zsh)                         # https://junegunn.github.io/fzf/installation/#setting-up-shell-integration
 eval "$(zoxide init zsh --cmd cd)"          # https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation
-eval "$(atuin init zsh --disable-up-arrow)" # Bind ctrl-r but not up arrow, https://atuin.sh/ 
 eval "$(starship init zsh)"                 # https://starship.rs/guide/#step-2-set-up-your-shell-to-use-starship

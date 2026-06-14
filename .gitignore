@@ -2,6 +2,4 @@
 .zcompdump*
 .zsh_history
 .zsh_sessions/
-# TODO: figure out what this is
-home/.config/atuin/atuin-receipt.json
 home/.config/superfile/theme

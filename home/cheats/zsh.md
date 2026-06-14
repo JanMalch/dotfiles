@@ -3,6 +3,13 @@
 `Ctrl+Z` to put the current process (like Neovim) in the background.
 Enter `fg` to return to the process.
 
+## Shortcuts
+
+- [fzf shell integration](https://junegunn.github.io/fzf/shell-integration/)
+   - `CTRL-R` to paste the selected command from history onto the command-line
+   - `CTRL-T` to paste the selected files and directories onto the command-line
+   - `ALT-C` to `cd` into the selected directory
+
 ## [Tricks](https://blog.hofstede.it/shell-tricks-that-actually-make-life-easier-and-save-your-sanity/)
 
 - `$_` expands to last argument of the previous command
