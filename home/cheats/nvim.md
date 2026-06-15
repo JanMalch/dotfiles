@@ -2,9 +2,11 @@
 
 - `<leader>pv` for project view
 - [Telescope](https://github.com/nvim-telescope/telescope.nvim)
-    - `<leader>pf` to fuzzy-find project files
-    - `<C-p>` to fuzzy-find git files
-    - `<leader>ps` for project search with grep
+    - `<leader>ff` to fuzzy-find git files
+    - `<leader>fp` to fuzzy-find project files
+    - `<leader>fg` for ripgrep, with optional file filter separated by double space
+    - `<leader>fw` / `<leader>fW` to grep word under cursor
+    - `<leader>fh` to find help tags
 - Copy
     - `<leader>p` to keep clipboard when pasting
     - `<leader>y` copy to system clipboard
