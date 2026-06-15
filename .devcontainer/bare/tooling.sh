@@ -8,7 +8,7 @@ echo 'http://dl-cdn.alpinelinux.org/alpine/edge/community' | sudo tee -a /etc/ap
 echo 'neovim * edge' | sudo tee -a /etc/apk/pin.conf
 
 # Refer to e.g. https://pkgs.alpinelinux.org/package/v3.22/community/x86/carapace
-sudo apk add bat carapace eza fastfetch fd ffmpeg fzf delta dust dysk lazygit go git-lfs imagemagick neovim nodejs npm ripgrep starship xclip zoxide
+sudo apk add bat carapace eza fastfetch fd ffmpeg fzf delta dust dysk lazygit go git-lfs imagemagick neovim nodejs npm ripgrep starship tree-sitter xclip zoxide
 git lfs install
 
 echo
