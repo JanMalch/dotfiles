@@ -35,6 +35,8 @@ vim.keymap.set("n", "<C-l>", "<Cmd>wincmd l<CR>", { silent = true })
 vim.keymap.set("n", "<leader>jq", vim.cmd.JqPlayground)
 ---- when in the query window, run the jq query
 vim.keymap.set("n", "R", "<Plug>(JqPlaygroundRunQuery)")
+-- nvim's built-in undo tree
+vim.keymap.set("n", "<leader>u", require("undotree").open)
 -- buffers AKA tabs
 local opts = { noremap = true, silent = true }
 for i = 1, 9 do

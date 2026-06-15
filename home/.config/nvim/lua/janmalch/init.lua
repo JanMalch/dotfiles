@@ -1,3 +1,5 @@
+vim.cmd("packadd nvim.undotree")
+
 require("janmalch.set")
 require("janmalch.remap")
 require("janmalch.lazy_init")
