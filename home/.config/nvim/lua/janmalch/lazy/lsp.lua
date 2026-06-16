@@ -209,8 +209,10 @@ return {
 				--
 				-- But for many setups, the LSP (`ts_ls`) will work just fine
 				ts_ls = {},
-				--
+				-- https://github.com/Kotlin/kotlin-lsp
 				kotlin_lsp = {},
+				-- Java https://github.com/eclipse-jdtls/eclipse.jdt.ls
+				jdtls = {},
 				jsonls = {},
 
 				lua_ls = {
