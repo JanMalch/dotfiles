@@ -60,6 +60,7 @@ return {
 	tag = "v0.2.2",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope-frecency.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	},
 
@@ -72,14 +73,24 @@ return {
 			pickers = {
 				git_files = pickers_opt,
 				find_files = pickers_opt,
-				buffers = pickers_opt,
+				buffers = {
+					theme = "ivy",
+					mappings = {
+						n = {
+							["d"] = require("telescope.actions").delete_buffer,
+							["q"] = require("telescope.actions").close,
+						},
+					},
+				},
 			},
 			extensions = {
 				fzf = {},
+				frecency = {},
 			},
 		})
 
 		require("telescope").load_extension("fzf")
+		require("telescope").load_extension("frecency")
 
 		local builtin = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>ff", function()
@@ -96,7 +107,15 @@ return {
 			builtin.grep_string({ search = word })
 		end)
 		vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
-		vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+		vim.keymap.set("n", "<leader>fb", function()
+			builtin.buffers({ sort_mru = true, sort_lastused = true, initial_mode = "n", ignore_current_buffer = true })
+		end, { desc = "Telescope buffers" })
 		vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX<cr>", { desc = "Telescope TODOs" })
+		vim.keymap.set(
+			"n",
+			"<leader>fr",
+			"<cmd>Telescope frecency ignore_current_buffer=true theme=ivy<cr>",
+			{ desc = "Telescope f[r]ecent files" }
+		)
 	end,
 }
