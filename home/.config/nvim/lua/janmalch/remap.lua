@@ -37,6 +37,8 @@ vim.keymap.set("n", "<leader>jq", vim.cmd.JqPlayground)
 vim.keymap.set("n", "R", "<Plug>(JqPlaygroundRunQuery)")
 -- nvim's built-in undo tree
 vim.keymap.set("n", "<leader>u", require("undotree").open)
+-- exit insert mode with kj
+vim.keymap.set("i", "kj", "<ESC>", { desc = "Exit insert mode with kj" })
 -- buffers AKA tabs
 vim.keymap.set("n", "<C-p>", "<Cmd>bp<CR>", { silent = true, desc = "[P]revious buffer" })
 vim.keymap.set("n", "<C-n>", "<Cmd>bn<CR>", { silent = true, desc = "[N]ext buffer" })
