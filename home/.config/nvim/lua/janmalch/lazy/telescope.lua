@@ -1,10 +1,10 @@
-local pickers = require("telescope.pickers")
-local finders = require("telescope.finders")
-local make_entry = require("telescope.make_entry")
-local conf = require("telescope.config").values
-
 -- https://github.com/tjdevries/advent-of-nvim/blob/13d4ec68a2a81f27264f3cc73dd7cd8c047aab87/nvim/lua/config/telescope/multigrep.lua
 local live_multigrep = function(opts)
+	local pickers = require("telescope.pickers")
+	local finders = require("telescope.finders")
+	local make_entry = require("telescope.make_entry")
+	local conf = require("telescope.config").values
+
 	opts = opts or {}
 	opts.cwd = opts.cwd or vim.uv.cwd()
 
@@ -108,7 +108,12 @@ return {
 		end)
 		vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 		vim.keymap.set("n", "<leader>fb", function()
-			builtin.buffers({ sort_mru = true, sort_lastused = true, initial_mode = "n", ignore_current_buffer = true })
+			builtin.buffers({
+				sort_mru = true,
+				sort_lastused = true,
+				initial_mode = "normal",
+				ignore_current_buffer = true,
+			})
 		end, { desc = "Telescope buffers" })
 		vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX<cr>", { desc = "Telescope TODOs" })
 		vim.keymap.set(
