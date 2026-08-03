@@ -65,14 +65,10 @@ return {
 	},
 
 	config = function()
-		-- open pickers in a "bottom sheet"
-		local pickers_opt = { theme = "ivy" }
 		require("telescope").setup({
 			-- use this to use ivy for everything
 			-- defaults = require("telescope.themes").get_ivy(),
 			pickers = {
-				git_files = pickers_opt,
-				find_files = pickers_opt,
 				buffers = {
 					theme = "ivy",
 					mappings = {
@@ -119,7 +115,7 @@ return {
 		vim.keymap.set(
 			"n",
 			"<leader>fr",
-			"<cmd>Telescope frecency ignore_current_buffer=true theme=ivy<cr>",
+			"<cmd>Telescope frecency ignore_current_buffer=true<cr>",
 			{ desc = "Telescope f[r]ecent files" }
 		)
 	end,
