@@ -296,6 +296,7 @@ img2png() {
 # ----------------------
 
 # https://github.com/jeffreytse/zsh-vi-mode
+ZVM_INIT_MODE=sourcing
 if [ -d "/opt/homebrew" ]; then
     source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 elif [ -d "/usr/share/zsh/plugins/zsh-vi-mode" ]; then
