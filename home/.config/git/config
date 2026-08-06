@@ -69,4 +69,6 @@
     ckb = !git branch | fzf | cut -c 3- | xargs git checkout
     amend = commit --amend --no-edit
     addexe = add --chmod=+x
-	glimpse = show --stat
+    glimpse = show --stat
+    rebaes = rebase
+
