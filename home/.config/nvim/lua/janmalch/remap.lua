@@ -1,5 +1,7 @@
 -- ":so" to source this file
 vim.g.mapleader = " "
+-- write file
+vim.keymap.set("n", "<leader>w", ":w<CR>", { silent = true })
 -- project view: in normal mode, press "<leader>pv" to open vim's file explorer
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 -- move lines in visual mode
