@@ -23,6 +23,7 @@ export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/.ripgreprc"
 export PODMAN_COMPOSE_PROVIDER="podman-compose"
 
 # Homebrew
+export HOMEBREW_NO_ANALYTICS=1
 if [ -d "/opt/homebrew" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
