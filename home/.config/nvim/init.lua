@@ -1,1 +1,3 @@
-require("janmalch")
+require("config")
+require("plugins")
+
