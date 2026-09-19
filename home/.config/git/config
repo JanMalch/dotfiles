@@ -63,6 +63,10 @@
 [pull]
 	rebase = true
 
+[rerere]
+  # reuse recorded conflict resolutions automatically
+  enabled = true
+
 [alias]
     ck = checkout
     # fuzzy-find a branch and check it out
