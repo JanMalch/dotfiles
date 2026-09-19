@@ -1,25 +1,41 @@
-# https://github.com/catppuccin/lazygit/blob/c24895902ec2a3cb62b4557f6ecd8e0afeed95d5/themes-mergable/macchiato/blue.yml
+# https://github.com/catppuccin/lazygit/blob/798ad2e75a11766e9ba50e76e59aea6a81eb4866/themes-mergable/macchiato/blue.yml
 gui:
   theme:
     activeBorderColor:
-      - '#8aadf4'
+      - "#8aadf4"
       - bold
     inactiveBorderColor:
-      - '#a5adcb'
-    optionsTextColor:
-      - '#8aadf4'
-    selectedLineBgColor:
-      - '#363a4f'
-    cherryPickedCommitBgColor:
-      - '#494d64'
-    cherryPickedCommitFgColor:
-      - '#8aadf4'
-    unstagedChangesColor:
-      - '#ed8796'
-    defaultFgColor:
-      - '#cad3f5'
+      - "#a5adcb"
     searchingActiveBorderColor:
-      - '#eed49f'
+      - "#eed49f"
+    optionsTextColor:
+      - "#8aadf4"
+    selectedLineBgColor:
+      - "#363a4f"
+    inactiveViewSelectedLineBgColor:
+      - "#6e738d"
+    cherryPickedCommitFgColor:
+      - "#8aadf4"
+    cherryPickedCommitBgColor:
+      - "#494d64"
+    markedBaseCommitFgColor:
+      - "#8aadf4"
+    markedBaseCommitBgColor:
+      - "#eed49f"
+    unstagedChangesColor:
+      - "#ed8796"
+    defaultFgColor:
+      - "#cad3f5"
 
   authorColors:
-    '*': '#b7bdf8'
+    "*": "#b7bdf8"
+
+# https://github.com/smnatale/dotfiles/blob/0a487ee6480eed2b4289106355849503f3ad990d/dot_config/lazygit/config.yml
+git:
+  diffRenderers:
+    - type: stdinFilter
+      name: delta
+      colorArg: always
+      command: delta --paging=never --features="catppuccin-macchiato" --syntax-theme="Catppuccin Macchiato"
+    - type: rawGit
+      name: raw
