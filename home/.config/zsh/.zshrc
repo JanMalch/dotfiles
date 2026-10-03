@@ -23,6 +23,8 @@ export CARAPACE_BRIDGES='zsh'
 export EZA_CONFIG_DIR="$XDG_CONFIG_HOME/eza"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 
+export IJQ_HISTFILE="$XDG_CONFIG_HOME/zsh/.ijq_history"
+
 # see functions below
 export TRY_PATH="$HOME/tries"
 export CHEATS_PATH="$HOME/cheats" 
