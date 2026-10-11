@@ -139,6 +139,19 @@ extract() {
   esac
 }
 
+ienv() {
+  local prev=$(cat <<EOF
+if [ -f {2} ]; then bat --color=always --style=plain {2};
+elif [ -d {2} ]; then eza --group-directories-first --tree --level=2 --color=always --icons=auto {2};
+else echo 'Neither file nor directory.';
+fi;
+EOF
+);
+  env -0 \
+    | fzf --no-multi-line --read0 --delimiter='=' --preview="$prev" \
+    | cut -d= -f2;
+}
+
 # fzf-based replacement for https://github.com/tobi/try
 # When fzf is closed with enter, it will create a directory with the name of the entered query.
 # When called without a query, it prepopulates it with the current date.
