@@ -322,5 +322,7 @@ fi
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)                # https://carapace-sh.github.io/carapace-bin/setup.html
 source <(fzf --zsh)                         # https://junegunn.github.io/fzf/installation/#setting-up-shell-integration
-eval "$(zoxide init zsh --cmd cd)"          # https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation
+eval "$(zoxide init zsh)"                   # https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation
+cd() { __zoxide_z "$@"; }
+alias icd="zi"
 eval "$(starship init zsh)"                 # https://starship.rs/guide/#step-2-set-up-your-shell-to-use-starship
