@@ -118,6 +118,7 @@ rfv() (
 
 cx() { cd "$@" && ls -a; }
 fcd() { cd "$(find . -type d -not -path '*/.*' | fzf)" && ls -a; }
+fcdd() { cd "$(find . -type d | fzf)" && ls -a; }
 yl() { cat - | sed "${1}q;d" | copy; }
 hex2rgb() { pastel color "$1" | pastel format rgb; }
 rgb2hex() { pastel color "$1" | pastel format hex; }
