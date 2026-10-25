@@ -327,3 +327,8 @@ eval "$(zoxide init zsh)"                   # https://github.com/ajeetdsouza/zox
 cd() { __zoxide_z "$@"; }
 alias icd="zi"
 eval "$(starship init zsh)"                 # https://starship.rs/guide/#step-2-set-up-your-shell-to-use-starship
+
+export NVM_DIR="$HOME/.config/nvm"
+export NVM_LAZY_LOAD=true
+source "$HOME/.config/zsh/.zsh-nvm.zsh"
+
