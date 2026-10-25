@@ -1,0 +1,27 @@
+sources:
+  - ~/snippets/
+include_source_name: true
+auto_pick: always
+
+runners:
+  - ext: ".sh"
+    name: "sh"
+  - exts: [".js", ".cjs", ".mjs", ".ts"]
+    name: node
+  - ext: go
+    name: go
+    args: ["run", "{}"]
+  - ext: kts
+    name: kotlinc
+    args: ["-script"]
+
+fzf:
+  use_env: true
+  preview: "bat --color=always --style=plain {1}"
+  preview_label: '[[ -n {} ]] && printf " %s " {1}'
+  list_label: |-
+    if [[ -z $FZF_QUERY ]]; then
+      echo " $FZF_MATCH_COUNT snippets "
+    else
+      echo " $FZF_MATCH_COUNT snippets for '$FZF_QUERY' "
+    fi
