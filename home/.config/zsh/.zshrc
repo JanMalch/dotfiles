@@ -56,7 +56,8 @@ alias docker="podman" # https://podman.io/
 # Just use "la" if you want something like "ls -la".
 # Also: using carapace for eza completions
 alias ls="eza --group-directories-first --icons=auto"
-alias la="eza --group-directories-first -labh --no-user --icons=auto --git"
+alias la="eza --group-directories-first -lah --no-user --icons=auto --git"
+alias ladu="eza -lah --no-user --icons=auto --total-size --sort=size --reverse"
 alias tree="eza --group-directories-first --tree --level=2 --icons=auto"
 
 # verbose & confirm overwrites
