@@ -84,9 +84,9 @@ elif [ "$(command -v "pbcopy")" ]; then
 fi
 
 # Navigation
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
+alias ..="cx .."
+alias ...="cx ../.."
+alias ....="cx ../../.."
 
 alias mkcd="takedir" # see function below
 
