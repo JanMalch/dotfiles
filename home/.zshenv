@@ -25,5 +25,7 @@ export PODMAN_COMPOSE_PROVIDER="podman-compose"
 # Homebrew
 export HOMEBREW_NO_ANALYTICS=1
 if [ -d "/opt/homebrew" ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+    eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+elif [ -d "/home/linuxbrew" ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 fi
