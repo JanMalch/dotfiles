@@ -72,5 +72,5 @@ lualine.setup({
 		},
 		lualine_z = {},
 	},
-	extensions = { "quickfix", "oil" },
+	extensions = { "quickfix" },
 })
