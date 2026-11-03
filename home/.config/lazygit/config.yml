@@ -26,10 +26,8 @@ gui:
       - "#ed8796"
     defaultFgColor:
       - "#cad3f5"
-
-  authorColors:
-    "*": "#b7bdf8"
-
+    authorColors:
+      "*": "#b7bdf8"
 # https://github.com/smnatale/dotfiles/blob/0a487ee6480eed2b4289106355849503f3ad990d/dot_config/lazygit/config.yml
 git:
   diffRenderers:
