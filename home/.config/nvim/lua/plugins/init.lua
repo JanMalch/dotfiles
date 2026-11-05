@@ -23,6 +23,7 @@ vim.pack.add({
 	gh("folke/trouble.nvim"),
 	gh("j-hui/fidget.nvim"),
 	gh("lewis6991/gitsigns.nvim"),
+	gh("rachartier/tiny-cmdline.nvim"),
 
 	-- LSP, completion, and formatting
 	gh("mason-org/mason-lspconfig.nvim"),

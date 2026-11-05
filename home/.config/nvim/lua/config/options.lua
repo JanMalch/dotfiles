@@ -40,6 +40,8 @@ vim.o.breakindent = true -- prevent line wrapping
 vim.opt.fillchars = { eob = " " }
 vim.o.laststatus = 3 -- global statusline
 
+vim.o.cmdheight = 0 -- using tiny-cmdline
+
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions" -- from auto-session checkhealth
 
 vim.opt.isfname:append("@-@")
