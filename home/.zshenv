@@ -15,6 +15,8 @@ export PATH="$GOPATH/bin:$PATH"
 # Scripts from my git repository are in $HOME/scripts
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
+# e.g. for Android CLI
+export PATH="$HOME/.local/bin:$PATH"
 
 # https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/.ripgreprc"
