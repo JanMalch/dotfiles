@@ -1,37 +1,29 @@
 vim.pack.add({
 	"https://github.com/Saghen/blink.lib",
 	"https://github.com/Saghen/blink.cmp",
+	"https://github.com/rafamadriz/friendly-snippets",
 	"https://github.com/mikavilpas/blink-ripgrep.nvim",
 	"https://github.com/L3MON4D3/LuaSnip",
 })
 
-vim.api.nvim_create_autocmd("PackChanged", {
-	desc = "Build blink.cmp after install/update",
-	group = vim.api.nvim_create_augroup("blink_build", { clear = true }),
-	callback = function(ev)
-		local name, kind = ev.data.spec.name, ev.data.kind
-		if name == "blink.cmp" and (kind == "install" or kind == "update") then
-			vim.notify("Building blink.cmp...", vim.log.levels.INFO)
-			vim.system({ "cargo", "build", "--release" }, { cwd = ev.data.path }):wait()
-			local cmp = require("blink.cmp")
-			cmp.build():pwait()
-		end
-	end,
-})
-
 -- require("luasnip.loaders.from_vscode").lazy_load()
 
-require("blink.cmp").setup({
+local cmp = require("blink.cmp")
+cmp.build():pwait()
+cmp.setup({
 	snippets = { preset = "luasnip" },
 	keymap = {
 		preset = "default",
 		["<Tab>"] = { "accept", "fallback" },
 		["<CR>"] = { "accept", "fallback" },
-		["<S-Tab>"] = { "show" },
+		["<C-Space>"] = { "show" },
 		["<C-j>"] = { "select_next", "fallback" },
 		["<C-k>"] = { "select_prev", "fallback" },
 	},
 	completion = {
+		ghost_text = {
+			enabled = true,
+		},
 		menu = {
 			auto_show = true,
 			draw = {
@@ -42,7 +34,16 @@ require("blink.cmp").setup({
 		documentation = { auto_show = true },
 	},
 	signature = { enabled = true },
-	fuzzy = { implementation = "lua" },
+	fuzzy = {
+		implementation = "prefer_rust_with_warning",
+		max_typos = function(keyword)
+			return math.floor(#keyword / 4)
+		end,
+		frecency = {
+			enabled = true,
+			path = vim.fn.stdpath("state") .. "/blink/cmp/frecency.dat",
+		},
+	},
 	sources = {
 		default = {
 			"lsp",
