@@ -47,7 +47,7 @@ check_tool() {
 # Checking if https://github.com/jeffreytse/zsh-vi-mode is available
 check_zsh_vi_mode() {
     if [ "$(command -v "brew")" ]; then
-        if [ -d "$(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode" ]; then
+        if [ -d "$HOMEBREW_PREFIX/opt/zsh-vi-mode/share/zsh-vi-mode" ]; then
             echo -e "\e[0;32mSuccess:\e[0m zsh-vi-mode installed via brew"
         else
             echo -e "\e[1;31mWarning:\e[0m zsh-vi-mode not installed via brew"
