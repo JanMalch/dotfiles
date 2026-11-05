@@ -5,112 +5,112 @@ set -eo pipefail
 
 # Checks if the correct shell is being used
 check_shell() {
-    if [[ -z "$SHELL" ]]; then
-        echo -e "\e[1;31mWarning:\e[0m Unable to check if zsh is the default shell, because SHELL environment variable is not set."
-    elif [[ "$SHELL" == *zsh* ]]; then
-        echo -e "\e[0;32mSuccess:\e[0m Defaut shell is zsh"
-    else
-        echo -e "\e[1;31mWarning:\e[0m SHELL is not zsh. Please make sure you are using zsh."
-    fi
+	if [[ -z "$SHELL" ]]; then
+		echo -e "\e[1;31mWarning:\e[0m Unable to check if zsh is the default shell, because SHELL environment variable is not set."
+	elif [[ "$SHELL" == *zsh* ]]; then
+		echo -e "\e[0;32mSuccess:\e[0m Defaut shell is zsh"
+	else
+		echo -e "\e[1;31mWarning:\e[0m SHELL is not zsh. Please make sure you are using zsh."
+	fi
 }
 
 # Checks if the tool exists, prints its version and passed in installation link.
 check_tool() {
-    local cmd="$1"
-    local link="$2"
-    local padding=$(( 12 - ${#cmd} ))
-    if [ "$(command -v "$cmd")" ]; then
-      local output
-      output="$("$cmd" --version 2>/dev/null)" || output="<unknown version>"
+	local cmd="$1"
+	local link="$2"
+	local padding=$((12 - ${#cmd}))
+	if [ "$(command -v "$cmd")" ]; then
+		local output
+		output="$("$cmd" --version 2>/dev/null)" || output="<unknown version>"
 
-      local version
-      if [[ $cmd == "eza" ]]; then
-          version="$(printf '%s\n' "$output" | sed -n '2p')"
-      elif [[ $cmd == "go" ]]; then
-          version="$(go version)"
-      else
-          version="$(printf '%s\n' "$output" | sed -n '1p')"
-      fi
+		local version
+		if [[ $cmd == "eza" ]]; then
+			version="$(printf '%s\n' "$output" | sed -n '2p')"
+		elif [[ $cmd == "go" ]]; then
+			version="$(go version)"
+		else
+			version="$(printf '%s\n' "$output" | sed -n '1p')"
+		fi
 
-      printf "%s " "$cmd"
-      printf '\e[0;30m·%.0s\e[0m' $(seq 1 $padding)
-      printf " \e[0;32m%s\e[0m\n" "$version"
-      printf "%-14s%s\n" "" "$(which "$cmd")"
-    else
-      printf "%s " "$cmd"
-      printf '\e[0;30m·%.0s\e[0m' $(seq 1 $padding)
-      printf " \e[1;31mmissing\e[0m\n"
-    fi
-    printf "%-14s\e[4;34m%s\e[0m\n" "" "$link"
+		printf "%s " "$cmd"
+		printf '\e[0;30m·%.0s\e[0m' $(seq 1 $padding)
+		printf " \e[0;32m%s\e[0m\n" "$version"
+		printf "%-14s%s\n" "" "$(which "$cmd")"
+	else
+		printf "%s " "$cmd"
+		printf '\e[0;30m·%.0s\e[0m' $(seq 1 $padding)
+		printf " \e[1;31mmissing\e[0m\n"
+	fi
+	printf "%-14s\e[4;34m%s\e[0m\n" "" "$link"
 }
 
 # Checking if https://github.com/jeffreytse/zsh-vi-mode is available
 check_zsh_vi_mode() {
-    if [ "$(command -v "brew")" ]; then
-        if [ -d "$HOMEBREW_PREFIX/opt/zsh-vi-mode/share/zsh-vi-mode" ]; then
-            echo -e "\e[0;32mSuccess:\e[0m zsh-vi-mode installed via brew"
-        else
-            echo -e "\e[1;31mWarning:\e[0m zsh-vi-mode not installed via brew"
-        fi
-    elif [ -d "/usr/share/zsh/plugins/zsh-vi-mode" ]; then
-        # e.g. Arch Linux
-        echo -e "\e[0;32mSuccess:\e[0m zsh-vi-mode installed"
-    else
-        echo -e "\e[1;31mWarning:\e[0m zsh-vi-mode maybe not installed"
-    fi
+	if [ "$(command -v "brew")" ]; then
+		if [ -d "$HOMEBREW_PREFIX/opt/zsh-vi-mode/share/zsh-vi-mode" ]; then
+			echo -e "\e[0;32mSuccess:\e[0m zsh-vi-mode installed via brew"
+		else
+			echo -e "\e[1;31mWarning:\e[0m zsh-vi-mode not installed via brew"
+		fi
+	elif [ -d "/usr/share/zsh/plugins/zsh-vi-mode" ]; then
+		# e.g. Arch Linux
+		echo -e "\e[0;32mSuccess:\e[0m zsh-vi-mode installed"
+	else
+		echo -e "\e[1;31mWarning:\e[0m zsh-vi-mode maybe not installed"
+	fi
 }
 
 # Includes the base.gitconfig in the global gitconfig
 include_base_gitconfig() {
-    if [[ -z "${XDG_CONFIG_HOME-}" ]]; then
-        echo -e "\e[1;31mWarning:\e[0m Using XDG_CONFIG_HOME environment variable in the global git config, but it's not defined."
-    fi
-    git config --global include.path "\$XDG_CONFIG_HOME/git/config"
-    echo -e "\e[1;32mSuccess:\e[0m The include.path of the global git config has successfully been overwritten."
+	if [[ -z "${XDG_CONFIG_HOME-}" ]]; then
+		echo -e "\e[1;31mWarning:\e[0m Using XDG_CONFIG_HOME environment variable in the global git config, but it's not defined."
+	fi
+	git config --global include.path "\$XDG_CONFIG_HOME/git/config"
+	echo -e "\e[1;32mSuccess:\e[0m The include.path of the global git config has successfully been overwritten."
 }
 
 # Downloads latest JetBrainsMono Nerd Font
 update_jetbrains_mono() {
-    local fontsdir
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        # "~/Library/Fonts" for user-only
-        fontsdir="/Library/Fonts"
-    else
-        fontsdir="$HOME/.fonts"
-    fi
+	local fontsdir
+	if [[ "$OSTYPE" == "darwin"* ]]; then
+		# "~/Library/Fonts" for user-only
+		fontsdir="/Library/Fonts"
+	else
+		fontsdir="$HOME/.fonts"
+	fi
 
-    if [ ! -d "$fontsdir" ]; then
-        mkdir "$fontsdir"
-    fi
-    local url_cache="$fontsdir/.jetbrainsmono.nerdfont.txt"
-    local installed_zip_url
-    local latest_zip_url
-    installed_zip_url=$( [ -f "$url_cache" ] && cat "$url_cache" || echo "" )
-    latest_zip_url="$(curl -s "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" \
-        | jq -r '.assets[] | select(.name == "JetBrainsMono.zip") | .browser_download_url')"
+	if [ ! -d "$fontsdir" ]; then
+		mkdir "$fontsdir"
+	fi
+	local url_cache="$fontsdir/.jetbrainsmono.nerdfont.txt"
+	local installed_zip_url
+	local latest_zip_url
+	installed_zip_url=$([ -f "$url_cache" ] && cat "$url_cache" || echo "")
+	latest_zip_url="$(curl -s "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" |
+		jq -r '.assets[] | select(.name == "JetBrainsMono.zip") | .browser_download_url')"
 
-    if [[ "$installed_zip_url" == "$latest_zip_url" ]]; then
-        echo -e "\e[1;32mSuccess:\e[0m Latest JetBrains Mono Nerd Font already stored in $fontsdir/JetBrainsMono"
-    else
-        echo -e "Updating JetBrainsMono Nerd Font (\e[4;34m$latest_zip_url\e[0m) ..."
-        curl -sS -L -o "$fontsdir/JetBrainsMono.zip" "$latest_zip_url"
-        
-        if [ -d "$fontsdir/JetBrainsMono" ]; then
-            rm -r "$fontsdir/JetBrainsMono"
-        fi
-        unzip -q "$fontsdir/JetBrainsMono.zip" -d "$fontsdir/JetBrainsMono"
-        rm "$fontsdir/JetBrainsMono.zip"
-        echo "$latest_zip_url" > "$url_cache"
-        echo -e "\e[1;32mSuccess:\e[0m JetBrainsMono Nerd Font is stored in $fontsdir/JetBrainsMono"
-    
-        if [[ "$OSTYPE" == "darwin"* ]]; then
-            echo -e "\e[1;32mSuccess:\e[0m JetBrainsMono Nerd Font is available for system-wide use"
-        elif [ "$(command -v fc-cache)" ]; then 
-            fc-cache -vf > /dev/null
-        else
-            echo -e "\e[1;31mWarning:\e[0m Cannot auto-install the font on this platform"
-        fi
-    fi
+	if [[ "$installed_zip_url" == "$latest_zip_url" ]]; then
+		echo -e "\e[1;32mSuccess:\e[0m Latest JetBrains Mono Nerd Font already stored in $fontsdir/JetBrainsMono"
+	else
+		echo -e "Updating JetBrainsMono Nerd Font (\e[4;34m$latest_zip_url\e[0m) ..."
+		curl -sS -L -o "$fontsdir/JetBrainsMono.zip" "$latest_zip_url"
+
+		if [ -d "$fontsdir/JetBrainsMono" ]; then
+			rm -r "$fontsdir/JetBrainsMono"
+		fi
+		unzip -q "$fontsdir/JetBrainsMono.zip" -d "$fontsdir/JetBrainsMono"
+		rm "$fontsdir/JetBrainsMono.zip"
+		echo "$latest_zip_url" >"$url_cache"
+		echo -e "\e[1;32mSuccess:\e[0m JetBrainsMono Nerd Font is stored in $fontsdir/JetBrainsMono"
+
+		if [[ "$OSTYPE" == "darwin"* ]]; then
+			echo -e "\e[1;32mSuccess:\e[0m JetBrainsMono Nerd Font is available for system-wide use"
+		elif [ "$(command -v fc-cache)" ]; then
+			fc-cache -vf >/dev/null
+		else
+			echo -e "\e[1;31mWarning:\e[0m Cannot auto-install the font on this platform"
+		fi
+	fi
 }
 
 echo "  ___      _               ___          _           "
@@ -124,9 +124,9 @@ check_zsh_vi_mode
 include_base_gitconfig
 update_jetbrains_mono
 if [ "$(command -v bat)" ]; then
-    echo -e "\e[0;30mWaiting:\e[0m Building bat cache ..."
-    bat cache --build > /dev/null
-    echo -e "\e[1;32mSuccess:\e[0m bat cache has been updated"
+	echo -e "\e[0;30mWaiting:\e[0m Building bat cache ..."
+	bat cache --build >/dev/null
+	echo -e "\e[1;32mSuccess:\e[0m bat cache has been updated"
 fi
 
 echo
@@ -163,8 +163,8 @@ check_tool "snips" "https://github.com/JanMalch/snips#readme"
 check_tool "starship" "https://starship.rs/installing/"
 check_tool "tldr" "https://github.com/tldr-pages/tldr#readme"
 if [[ "$OSTYPE" != "darwin"* ]]; then
-    # MacOS (Darwin) brings pbcopy / pbpaste
-    check_tool "xclip" "https://stackoverflow.com/a/5130969"
+	# MacOS (Darwin) brings pbcopy / pbpaste
+	check_tool "xclip" "https://stackoverflow.com/a/5130969"
 fi
 check_tool "yq" "https://github.com/mikefarah/yq#readme"
 check_tool "zoxide" "https://github.com/ajeetdsouza/zoxide#readme"
