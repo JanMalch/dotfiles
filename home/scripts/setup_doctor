@@ -133,6 +133,7 @@ echo
 check_tool "android" "https://developer.android.com/tools/agents/android-cli"
 check_tool "bat" "https://github.com/sharkdp/bat#readme"
 check_tool "carapace" "https://carapace.sh"
+check_tool "cargo" "https://rust-lang.org/tools/install/"
 check_tool "code" "https://code.visualstudio.com"
 check_tool "delta" "https://dandavison.github.io/delta"
 check_tool "dysk" "https://github.com/Canop/dysk"
