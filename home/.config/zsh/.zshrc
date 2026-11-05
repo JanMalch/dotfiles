@@ -122,7 +122,6 @@ fcdd() { cd "$(find . -type d | fzf)" && ls -a; }
 yl() { cat - | sed "${1}q;d" | copy; }
 hex2rgb() { pastel color "$1" | pastel format rgb; }
 rgb2hex() { pastel color "$1" | pastel format hex; }
-jqv() { nvim +JqPlayground $1; }
 google() { local IFS="%20"; local q="$(echo "$@")"; open "https://www.google.com/search?q=$q"; }
 help() { "$@" --help 2>&1 | bat --plain --language=help; }
 helpv() { "$@" --help 2>&1 | vim; }

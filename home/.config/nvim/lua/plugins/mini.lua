@@ -1,3 +1,7 @@
+vim.pack.add({
+	"https://github.com/nvim-mini/mini.nvim",
+})
+
 -- enhanced, a and i keybinds
 require("mini.ai").setup()
 
@@ -11,19 +15,9 @@ require("mini.surround").setup()
 local files = require("mini.files")
 files.setup()
 
-vim.keymap.set(
-	"n",
-	"<leader>e",
-    function()
-files.open(vim.api.nvim_buf_get_name(0))
-    end,
-	{ desc = "File explorer at current directory" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>E",
-    function()
-        files.open(nil, false)
-    end,
-	{ desc = "File explorer at root directory" }
-)
+vim.keymap.set("n", "<leader>e", function()
+	files.open(vim.api.nvim_buf_get_name(0))
+end, { desc = "File explorer at current directory" })
+vim.keymap.set("n", "<leader>E", function()
+	files.open(nil, false)
+end, { desc = "File explorer at root directory" })

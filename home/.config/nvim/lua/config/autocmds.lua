@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "highlight selection on yank",
 	callback = function()
 		-- vim.hl.hl_op({ timeout = 200, on_visual = true })
-        vim.highlight.on_yank()
+		vim.highlight.on_yank()
 	end,
 })
 
@@ -40,19 +40,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = vim.api.nvim_create_augroup("no_auto_comment", {}),
 	callback = function()
 		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
-	end,
-})
-
-vim.api.nvim_create_autocmd("PackChanged", {
-	desc = "Build telescope-fzf-native after install/update",
-	group = vim.api.nvim_create_augroup("telescope_fzf_build", { clear = true }),
-	callback = function(ev)
-		local name, kind = ev.data.spec.name, ev.data.kind
-		if name == "telescope-fzf-native.nvim" and (kind == "install" or kind == "update") then
-			if vim.fn.executable("make") == 1 then
-				vim.system({ "make" }, { cwd = ev.data.path }):wait()
-			end
-		end
 	end,
 })
 

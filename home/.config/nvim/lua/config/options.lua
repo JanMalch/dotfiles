@@ -1,4 +1,3 @@
-require("vim._core.ui2").enable({})
 vim.g.mapleader = " " -- space leader key
 vim.g.maplocalleader = " " -- space leader key
 
@@ -39,8 +38,6 @@ vim.o.breakindent = true -- prevent line wrapping
 -- vim.opt.fillchars = { vert = " " } -- remove line divider between splits
 vim.opt.fillchars = { eob = " " }
 vim.o.laststatus = 3 -- global statusline
-
-vim.o.cmdheight = 0 -- using tiny-cmdline
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions" -- from auto-session checkhealth
 

@@ -1,3 +1,8 @@
+vim.pack.add({
+	"https://github.com/nvim-lualine/lualine.nvim",
+	"https://github.com/folke/trouble.nvim",
+})
+
 local lualine = require("lualine")
 local trouble = require("trouble")
 local symbols = trouble.statusline({

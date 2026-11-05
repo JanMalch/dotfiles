@@ -1,3 +1,39 @@
+vim.pack.add({
+	"https://github.com/mason-org/mason-lspconfig.nvim",
+	"https://github.com/mason-org/mason.nvim",
+	"https://github.com/neovim/nvim-lspconfig",
+	"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
+	"https://github.com/b0o/SchemaStore.nvim",
+	"https://github.com/artemave/workspace-diagnostics.nvim",
+	"https://github.com/rachartier/tiny-inline-diagnostic.nvim",
+	"https://github.com/rachartier/tiny-code-action.nvim",
+})
+
+vim.diagnostic.config({
+	underline = true,
+	virtual_text = false,
+	update_in_insert = false,
+	severity_sort = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = " ",
+			[vim.diagnostic.severity.WARN] = " ",
+			[vim.diagnostic.severity.HINT] = " ",
+			[vim.diagnostic.severity.INFO] = " ",
+		},
+	},
+})
+
+require("tiny-inline-diagnostic").setup({
+	preset = "simple",
+	transparent_cursorline = false,
+	options = {
+		multilines = {
+			enabled = true,
+		},
+	},
+})
+
 require("mason").setup()
 require("mason-lspconfig").setup({})
 require("mason-tool-installer").setup({
@@ -20,6 +56,14 @@ require("mason-tool-installer").setup({
 })
 
 require("workspace-diagnostics").setup()
+require("tiny-code-action").setup({
+	picker = {
+		"telescope",
+		opts = {
+			layout_strategy = "horizontal",
+		},
+	},
+})
 
 vim.api.nvim_create_autocmd(
 	"LspAttach",

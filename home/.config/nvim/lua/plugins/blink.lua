@@ -1,3 +1,10 @@
+vim.pack.add({
+	"https://github.com/Saghen/blink.lib",
+	"https://github.com/Saghen/blink.cmp",
+	"https://github.com/mikavilpas/blink-ripgrep.nvim",
+	"https://github.com/L3MON4D3/LuaSnip",
+})
+
 vim.api.nvim_create_autocmd("PackChanged", {
 	desc = "Build blink.cmp after install/update",
 	group = vim.api.nvim_create_augroup("blink_build", { clear = true }),

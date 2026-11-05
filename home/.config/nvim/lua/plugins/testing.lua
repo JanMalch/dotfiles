@@ -1,3 +1,13 @@
+vim.pack.add({
+	"https://github.com/nvim-mini/mini.nvim",
+	"https://github.com/nvim-neotest/neotest",
+	"https://github.com/nvim-neotest/nvim-nio",
+	"https://github.com/antoinemadec/FixCursorHold.nvim",
+	"https://github.com/mfussenegger/nvim-jdtls",
+	"https://github.com/rcasia/neotest-java",
+	"https://github.com/AkisArou/neotest-nodejs",
+})
+
 require("neotest").setup({
 	settings = {
 		watch = true,

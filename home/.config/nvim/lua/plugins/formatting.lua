@@ -1,3 +1,7 @@
+vim.pack.add({
+	"https://github.com/stevearc/conform.nvim",
+})
+
 local util = require("conform.util")
 
 local eslint_config = {
