@@ -40,7 +40,7 @@ require("mason-tool-installer").setup({
 	ensure_installed = {
 		"stylua",
 		"prettierd",
-		"eslint",
+		"eslint_d",
 		"lua_ls",
 		"ts_ls",
 		"gopls",
