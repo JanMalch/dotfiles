@@ -4,10 +4,10 @@
 set -eo pipefail
 
 if ! command -v "stow" >/dev/null 2>&1; then
-	echo -e "\e[1;31mPlease install stow and rerun.\e[0m"
-	echo -e "\e[4;34mhttps://www.gnu.org/software/stow/\e[0m"
-	echo -e "\e[4;34mhttps://tamerlan.dev/how-i-manage-my-dotfiles-using-gnu-stow/#using-gnu-stow\e[0m"
-	echo -e "\e[4;34mhttps://brew.sh/\e[0m && brew install stow"
+	printf "\e[1;31m%s\e[0m\n" "Please install stow and rerun."
+	printf "\e[4;34m%s\e[0m\n" "https://www.gnu.org/software/stow/"
+	printf "\e[4;34m%s\e[0m\n" "https://tamerlan.dev/how-i-manage-my-dotfiles-using-gnu-stow/#using-gnu-stow"
+	printf "\e[4;34m%s\e[0m && brew install stow\n" "https://brew.sh/"
 	exit 1
 fi
 
@@ -19,8 +19,8 @@ echo "Basic setup has finished. Please install all necessary tools from the abov
 echo "Then, run the following command, or open a new terminal to finalize."
 echo "  source ~/.zshenv && source ~/.config/zsh/.zshrc"
 echo
-echo -e "\e[1mFurther Steps\e[0m"
-echo -e "I usually install my dependencies via Homebrew: \e[4;34mhttps://brew.sh/\e[0m"
+printf "\e[1m%s\e[0m\n" "Further Steps"
+printf "%s \e[4;34m%s\e[0m\n" "I usually install my dependencies via Homebrew: " 'https://brew.sh/'
 echo "Once you have that, you can install most of the core tools:"
 cat <<EOF
 

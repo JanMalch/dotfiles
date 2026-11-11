@@ -3,14 +3,17 @@
 # Let the script fail on error and on failing pipes
 set -eo pipefail
 
+warning() { printf "\e[1;31mWarning:\e[0m %s\n" "$1"; }
+success() { printf "\e[0;32mSuccess:\e[0m %s\n" "$1"; }
+
 # Checks if the correct shell is being used
 check_shell() {
 	if [[ -z "$SHELL" ]]; then
-		echo -e "\e[1;31mWarning:\e[0m Unable to check if zsh is the default shell, because SHELL environment variable is not set."
+		warning "Unable to check if zsh is the default shell, because SHELL environment variable is not set."
 	elif [[ "$SHELL" == *zsh* ]]; then
-		echo -e "\e[0;32mSuccess:\e[0m Defaut shell is zsh"
+		success "Defaut shell is zsh"
 	else
-		echo -e "\e[1;31mWarning:\e[0m SHELL is not zsh. Please make sure you are using zsh."
+		warning "SHELL is not zsh. Please make sure you are using zsh."
 	fi
 }
 
@@ -48,25 +51,25 @@ check_tool() {
 check_zsh_vi_mode() {
 	if [ "$(command -v "brew")" ]; then
 		if [ -d "$HOMEBREW_PREFIX/opt/zsh-vi-mode/share/zsh-vi-mode" ]; then
-			echo -e "\e[0;32mSuccess:\e[0m zsh-vi-mode installed via brew"
+			success "zsh-vi-mode installed via brew"
 		else
-			echo -e "\e[1;31mWarning:\e[0m zsh-vi-mode not installed via brew"
+			warning "zsh-vi-mode not installed via brew"
 		fi
 	elif [ -d "/usr/share/zsh/plugins/zsh-vi-mode" ]; then
 		# e.g. Arch Linux
-		echo -e "\e[0;32mSuccess:\e[0m zsh-vi-mode installed"
+		success "zsh-vi-mode installed"
 	else
-		echo -e "\e[1;31mWarning:\e[0m zsh-vi-mode maybe not installed"
+		warning "zsh-vi-mode maybe not installed"
 	fi
 }
 
 # Includes the base.gitconfig in the global gitconfig
 include_base_gitconfig() {
 	if [[ -z "${XDG_CONFIG_HOME-}" ]]; then
-		echo -e "\e[1;31mWarning:\e[0m Using XDG_CONFIG_HOME environment variable in the global git config, but it's not defined."
+		warning "Using XDG_CONFIG_HOME environment variable in the global git config, but it's not defined."
 	fi
 	git config --global include.path "\$XDG_CONFIG_HOME/git/config"
-	echo -e "\e[1;32mSuccess:\e[0m The include.path of the global git config has successfully been overwritten."
+	success "The include.path of the global git config has successfully been overwritten."
 }
 
 # Downloads latest JetBrainsMono Nerd Font
@@ -90,9 +93,9 @@ update_jetbrains_mono() {
 		jq -r '.assets[] | select(.name == "JetBrainsMono.zip") | .browser_download_url')"
 
 	if [[ "$installed_zip_url" == "$latest_zip_url" ]]; then
-		echo -e "\e[1;32mSuccess:\e[0m Latest JetBrains Mono Nerd Font already stored in $fontsdir/JetBrainsMono"
+		success "Latest JetBrains Mono Nerd Font already stored in $fontsdir/JetBrainsMono"
 	else
-		echo -e "Updating JetBrainsMono Nerd Font (\e[4;34m$latest_zip_url\e[0m) ..."
+		printf "Updating JetBrainsMono Nerd Font (\e[4;34m%s\e[0m) ...\n" "$latest_zip_url"
 		curl -sS -L -o "$fontsdir/JetBrainsMono.zip" "$latest_zip_url"
 
 		if [ -d "$fontsdir/JetBrainsMono" ]; then
@@ -101,14 +104,14 @@ update_jetbrains_mono() {
 		unzip -q "$fontsdir/JetBrainsMono.zip" -d "$fontsdir/JetBrainsMono"
 		rm "$fontsdir/JetBrainsMono.zip"
 		echo "$latest_zip_url" >"$url_cache"
-		echo -e "\e[1;32mSuccess:\e[0m JetBrainsMono Nerd Font is stored in $fontsdir/JetBrainsMono"
+		success "JetBrainsMono Nerd Font is stored in $fontsdir/JetBrainsMono"
 
 		if [[ "$OSTYPE" == "darwin"* ]]; then
-			echo -e "\e[1;32mSuccess:\e[0m JetBrainsMono Nerd Font is available for system-wide use"
+			success "JetBrainsMono Nerd Font is available for system-wide use"
 		elif [ "$(command -v fc-cache)" ]; then
 			fc-cache -vf >/dev/null
 		else
-			echo -e "\e[1;31mWarning:\e[0m Cannot auto-install the font on this platform"
+			warning "Cannot auto-install the font on this platform"
 		fi
 	fi
 }
@@ -124,9 +127,9 @@ check_zsh_vi_mode
 include_base_gitconfig
 update_jetbrains_mono
 if [ "$(command -v bat)" ]; then
-	echo -e "\e[0;30mWaiting:\e[0m Building bat cache ..."
+	printf "\e[0;30mWaiting:\e[0m Building bat cache ...\n"
 	bat cache --build >/dev/null
-	echo -e "\e[1;32mSuccess:\e[0m bat cache has been updated"
+	success "bat cache has been updated"
 fi
 
 echo
