@@ -46,4 +46,11 @@
     addexe = add --chmod=+x
     glimpse = show --stat
     rebaes = rebase
-
+    # fetch and checkout branch
+    new = !git fetch && git checkout $1 && git pull && :
+    # delete remote and local (force) branch
+    nuke = !git push -d origin $1 && git branch -D $1 && :
+    # print the remote branch which the current local branch is tracking
+    curry = rev-parse --abbrev-ref --symbolic-full-name @{u}
+    # reset to origin hard
+    roh = !git reset --hard $(git curry)
