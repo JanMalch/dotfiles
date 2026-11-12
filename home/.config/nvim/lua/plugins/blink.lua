@@ -27,6 +27,7 @@ cmp.setup({
 		menu = {
 			auto_show = true,
 			draw = {
+				padding = 0,
 				treesitter = { "lsp" },
 				columns = { { "kind_icon", "label", "label_description", gap = 1 }, { "kind" } },
 			},
