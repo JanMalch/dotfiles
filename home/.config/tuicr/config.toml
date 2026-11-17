@@ -1,0 +1,64 @@
+theme = "catppuccin-macchiato"
+transparent_background = false
+
+leader = " "
+comment_vim = false
+wrap = true
+relative_line_numbers = true
+scroll_offset = 8
+username = "Jan"
+
+[[comment_types]]
+id = "praise"
+color = "green"
+definition = "Highlights something done well"
+
+[[comment_types]]
+id = "nitpick"
+color = "gray"
+definition = "Small, preference-based detail"
+
+[[comment_types]]
+id = "suggestion"
+color = "cyan"
+definition = "Proposes an improvement"
+
+[[comment_types]]
+id = "issue"
+color = "red"
+definition = "Identifies a problem to address"
+
+[[comment_types]]
+id = "todo"
+color = "yellow"
+definition = "Small, necessary task"
+
+[[comment_types]]
+id = "question"
+color = "blue"
+definition = "Asks for clarification or investigation"
+
+[[comment_types]]
+id = "thought"
+color = "magenta"
+definition = "Non-blocking idea to consider"
+
+[[comment_types]]
+id = "chore"
+color = "yellow"
+definition = "Process or housekeeping task"
+
+[[comment_types]]
+id = "note"
+color = "blue"
+definition = "Non-blocking information to keep in mind"
+
+[[comment_types]]
+id = "typo"
+color = "red"
+definition = "Misspelling or typo to correct"
+
+[[comment_types]]
+id = "polish"
+color = "cyan"
+definition = "Optional refinement to improve quality"

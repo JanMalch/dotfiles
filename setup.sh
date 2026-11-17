@@ -25,7 +25,7 @@ echo "Once you have that, you can install most of the core tools:"
 cat <<EOF
 
 brew install bat bottom carapace git-delta gnu-sed eza fastfetch fd fzf git-lfs go \\
-	jq yq neovim lazygit node pastel ripgrep starship tlrc tree-sitter-cli zsh-vi-mode zoxide
+	jq yq neovim lazygit node pastel ripgrep starship tlrc tree-sitter-cli tuicr zsh-vi-mode zoxide
 git lfs install
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
 go install github.com/JanMalch/roar@latest

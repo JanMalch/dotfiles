@@ -165,6 +165,7 @@ check_tool "shfmt" "https://github.com/mvdan/sh#readme"
 check_tool "snips" "https://github.com/JanMalch/snips#readme"
 check_tool "starship" "https://starship.rs/installing/"
 check_tool "tldr" "https://github.com/tldr-pages/tldr#readme"
+check_tool "tuicr" "https://github.com/agavra/tuicr#readme"
 if [[ "$OSTYPE" != "darwin"* ]]; then
 	# MacOS (Darwin) brings pbcopy / pbpaste
 	check_tool "xclip" "https://stackoverflow.com/a/5130969"
